@@ -1,7 +1,5 @@
 package com.spd.mdm.manager;
 
-import android.annotation.NonNull;
-import android.annotation.Nullable;
 import android.content.ContentValues;
 import android.os.RemoteException;
 import android.os.ServiceManager;
@@ -44,7 +42,7 @@ public class MdmManager {
      *
      * @return 成功：返回包含所有SIM/USIM卡ICCID编号的列表；失败：返回空指针null
      */
-    @Nullable
+    
 
     public String[] listIccid() {
         try {
@@ -60,7 +58,7 @@ public class MdmManager {
      *
      * @return 成功：返回包含所有IMEI编号的列表；失败：返回空指针null
      */
-    @Nullable
+    
     public String[] listImei() {
         try {
             return iMdmService.listImei();
@@ -165,7 +163,7 @@ public class MdmManager {
      * string[3]：通过WLAN无线网络的接收量。
      * 失败返回null
      */
-    @Nullable
+    
 
     public String[] getAppTrafficInfo(String appPackageName) {
         try {
@@ -256,7 +254,7 @@ public class MdmManager {
      *
      * @return 成功返回手机坐标位置，JSON格式：{"longitude"="经度值","latitude"="纬度值", "height"="高度值"}；失败返回null
      */
-    @Nullable
+    
 
     public String getDevicePosition() {
         try {
@@ -290,7 +288,7 @@ public class MdmManager {
      *
      * @return 返回值为当前已设置的WLAN信息，{@link #setWlanConfiguration}
      */
-    @Nullable
+    
 
     public String getWlanConfiguration() {
         try {
@@ -338,7 +336,7 @@ public class MdmManager {
      * @param apnId APN标识ID
      * @return 成功返回APN信息，{@link #createApn}；失败返回空
      */
-    @Nullable
+    
 
     public String getApnInfo(int apnId) {
         try {
@@ -370,7 +368,7 @@ public class MdmManager {
      *
      * @return 所有apn内容
      */
-    @Nullable
+    
 
     public List<ContentValues> getAllApn() {
         try {
@@ -471,7 +469,7 @@ public class MdmManager {
      * @return 成功返回true；失败返回false。
      */
 
-    public boolean setAppInstallationPolicies(int mode, @Nullable String[] appPackageNames) {
+    public boolean setAppInstallationPolicies(int mode,  String[] appPackageNames) {
         try {
             return iMdmService.setAppInstallationPolicies(mode, appPackageNames);
         } catch (Exception e) {
@@ -487,7 +485,7 @@ public class MdmManager {
      * string[0]：功能模式，参见setAppInstallationPolicies方法的mode参数。
      * string[1]至string[n-1]：应用包名列表
      */
-    @Nullable
+    
 
     public String[] getAppInstallationPolicies() {
         try {
@@ -508,7 +506,7 @@ public class MdmManager {
      * @return 成功返回true；失败返回false。
      */
 
-    public boolean setAppUninstallationPolicies(int mode, @Nullable String[] appPackageNames) {
+    public boolean setAppUninstallationPolicies(int mode,  String[] appPackageNames) {
         try {
             return iMdmService.setAppUninstallationPolicies(mode, appPackageNames);
         } catch (Exception e) {
@@ -523,7 +521,7 @@ public class MdmManager {
      * @return string[0]：功能模式，参见setAppUninstallationPolicies方法的mode参数。
      * string[1]至string[n-1]：应用包名列表。
      */
-    @Nullable
+    
 
     public String[] getAppUninstallationPolicies() {
         try {
@@ -544,7 +542,7 @@ public class MdmManager {
      * @return 成功返回true；失败返回false
      */
 
-    public boolean setRunAppPolicies(int mode, @Nullable String[] appPackageNameList) {
+    public boolean setRunAppPolicies(int mode,  String[] appPackageNameList) {
         try {
             return iMdmService.setRunAppPolicies(mode, appPackageNameList);
         } catch (Exception e) {
@@ -560,7 +558,7 @@ public class MdmManager {
      * string[0]：功能模式，参见setRunAppPolicies方法的mode参数；
      * string[1]至string[n-1]：应用包名列表（含应用组件名），参见{@link #setRunAppPolicies} appPackageNameList参数
      */
-    @Nullable
+    
 
     public String[] getRunAppPolicies() {
         try {
@@ -586,7 +584,7 @@ public class MdmManager {
      * @return 成功返回true；失败返回false
      */
 
-    public boolean setAppPermission(String appPackageName, @Nullable String permissions) {
+    public boolean setAppPermission(String appPackageName,  String permissions) {
         try {
             return iMdmService.setAppPermission(appPackageName, permissions);
         } catch (Exception e) {
@@ -610,7 +608,7 @@ public class MdmManager {
      * @return 成功返回true；失败返回false
      */
 
-    public boolean setPermission(@Nullable String data) {
+    public boolean setPermission( String data) {
         try {
             return iMdmService.setPermission(data);
         } catch (Exception e) {
@@ -625,7 +623,7 @@ public class MdmManager {
      * @param appPackageName 应用包名
      * @return 返回值为应用包名对应的权限说明，格式参见{@link #setAppPermission}参数permissions
      */
-    @Nullable
+    
 
     public String getAppPermission(String appPackageName) {
         try {
@@ -681,7 +679,7 @@ public class MdmManager {
      * @return 成功返回true；失败返回false
      */
 
-    public boolean setSmsPolicies(int mode, @Nullable String regExp) {
+    public boolean setSmsPolicies(int mode,  String regExp) {
         try {
             return iMdmService.setSmsPolicies(mode, regExp);
         } catch (Exception e) {
@@ -835,7 +833,7 @@ public class MdmManager {
      * @param commandline Iptables命令行
      * @return 返回值为命令执行的标准输出或标准错误输出
      */
-    @Nullable
+    
 
     public String executeShellToSetIptables(String commandline) {
         try {
@@ -1090,7 +1088,7 @@ public class MdmManager {
      * @return 成功返回true；失败返回false
      */
 
-    public boolean setBluetoothPolicies(int mode, @Nullable String[] bluetoothInfoList) {
+    public boolean setBluetoothPolicies(int mode,  String[] bluetoothInfoList) {
         try {
             return iMdmService.setBluetoothPolicies(mode, bluetoothInfoList);
         } catch (Exception e) {
@@ -1532,7 +1530,7 @@ public class MdmManager {
      *
      * @return getWifiSsid
      */
-    @Nullable
+    
 
     public String getWifiSsid() {
         try {
@@ -1603,7 +1601,7 @@ public class MdmManager {
      *
      * @return 前台自启动应用包名列表
      */
-    @Nullable
+    
 
     public List<String> getForegroundAutoStartApp() {
         try {
@@ -1960,7 +1958,7 @@ public class MdmManager {
      * @param packageList app包名集合
      */
 
-    public void setAppBlacklist(@NonNull List<String> packageList) {
+    public void setAppBlacklist( List<String> packageList) {
         try {
             iMdmService.setAppBlacklist(packageList);
         } catch (Exception e) {
@@ -1985,7 +1983,7 @@ public class MdmManager {
      *
      * @return app包名集合
      */
-    @Nullable
+    
 
     public List<String> getAppBlacklist() {
         try {
@@ -2002,7 +2000,7 @@ public class MdmManager {
      * @param packageList app包名集合
      */
 
-    public void setAppWhitelist(@NonNull List<String> packageList) {
+    public void setAppWhitelist( List<String> packageList) {
         try {
             iMdmService.setAppWhitelist(packageList);
         } catch (Exception e) {
@@ -2027,7 +2025,7 @@ public class MdmManager {
      *
      * @return 白名单app包名集合
      */
-    @Nullable
+    
 
     public List<String> getAppWhitelist() {
         try {
@@ -2073,7 +2071,7 @@ public class MdmManager {
      * @param packageList app包名列表
      */
 
-    public void setAlwaysRunApps(@NonNull List<String> packageList) {
+    public void setAlwaysRunApps( List<String> packageList) {
         try {
             iMdmService.setAlwaysRunApps(packageList);
         } catch (Exception e) {
@@ -2098,7 +2096,7 @@ public class MdmManager {
      *
      * @return app包名集合
      */
-    @Nullable
+    
 
     public List<String> getAlwaysRunApps() {
         try {
@@ -2115,7 +2113,7 @@ public class MdmManager {
      * @param addS ip地址列表
      */
 
-    public void applyNetworkWhitelistRules(@Nullable List<String> addS) {
+    public void applyNetworkWhitelistRules( List<String> addS) {
         try {
             iMdmService.applyNetworkWhitelistRules(addS);
         } catch (Exception e) {
@@ -2140,7 +2138,7 @@ public class MdmManager {
      *
      * @return 白名单ip列表
      */
-    @Nullable
+    
 
     public List<String> getNetworkWhitelistRules() {
         try {
@@ -2157,7 +2155,7 @@ public class MdmManager {
      * @param addS 黑名单ip列表
      */
 
-    public void applyNetworkBlacklistRules(@Nullable List<String> addS) {
+    public void applyNetworkBlacklistRules( List<String> addS) {
         try {
             iMdmService.applyNetworkBlacklistRules(addS);
         } catch (Exception e) {
@@ -2182,7 +2180,7 @@ public class MdmManager {
      *
      * @return 黑名单ip集合
      */
-    @Nullable
+    
 
     public List<String> getNetworkBlacklistRules() {
         try {
@@ -2199,7 +2197,7 @@ public class MdmManager {
      * @param packageList app列表
      */
 
-    public void setUninstallBlacklist(@NonNull List<String> packageList) {
+    public void setUninstallBlacklist( List<String> packageList) {
         try {
             iMdmService.setUninstallBlacklist(packageList);
         } catch (Exception e) {
@@ -2213,7 +2211,7 @@ public class MdmManager {
      * @param packageList app包名集合
      */
 
-    public void addUninstallBlacklist(@NonNull List<String> packageList) {
+    public void addUninstallBlacklist( List<String> packageList) {
         try {
             iMdmService.addUninstallBlacklist(packageList);
         } catch (Exception e) {
@@ -2227,7 +2225,7 @@ public class MdmManager {
      * @param packageList app包名列表
      */
 
-    public void removeUninstallBlacklist(@NonNull List<String> packageList) {
+    public void removeUninstallBlacklist( List<String> packageList) {
         try {
             iMdmService.removeUninstallBlacklist(packageList);
         } catch (Exception e) {
@@ -2252,7 +2250,7 @@ public class MdmManager {
      *
      * @return 卸载黑名单应用列表
      */
-    @Nullable
+    
 
     public List<String> getUninstallBlacklist() {
         try {
@@ -2269,7 +2267,7 @@ public class MdmManager {
      * @param names 蓝牙名称集合
      */
 
-    public void setBluetoothWhitelist(@NonNull List<String> names) {
+    public void setBluetoothWhitelist( List<String> names) {
         try {
             iMdmService.setBluetoothWhitelist(names);
         } catch (Exception e) {
@@ -2282,7 +2280,7 @@ public class MdmManager {
      *
      * @return 白名单蓝牙名称列表
      */
-    @Nullable
+    
 
     public List<String> getBluetoothWhitelist() {
         try {
@@ -2411,7 +2409,7 @@ public class MdmManager {
      * @param data String {"data":{"operate":"1","urlArray":["http://fdfs.speedata.cn:9989/group1/M00/00/07/rBGFrl3wwDqAeBsPACS8sdsQTxI491.apk","","http://fdfs.speedata.cn:9989/group1/M00/00/07/rBGFrl34P_yAB-PcAJCjHyVRxyg030.apk"]},"action":"installNetAppWithOperation","id":"e42db0950fd846ceb174bd361da6d61d"}
      */
 
-    public void installNetAppWithOperation(@NonNull String data) {
+    public void installNetAppWithOperation( String data) {
         try {
             iMdmService.installNetAppWithOperation(data);
         } catch (Exception e) {
@@ -2425,7 +2423,7 @@ public class MdmManager {
      * @param apkUrls apk下载地址
      */
 
-    public void installNetApp(@NonNull List<String> apkUrls) {
+    public void installNetApp( List<String> apkUrls) {
         try {
             iMdmService.installNetApp(apkUrls);
         } catch (Exception e) {
@@ -2454,7 +2452,7 @@ public class MdmManager {
      *               创建时通过Long.toHexString(System.currentTimeMillis()))获取
      */
 
-    public void deleteVpn(@NonNull String vpnKey) {
+    public void deleteVpn( String vpnKey) {
         try {
             iMdmService.deleteVpn(vpnKey);
         } catch (Exception e) {
@@ -2468,7 +2466,7 @@ public class MdmManager {
      * @param ssidList ssid集合
      */
 
-    public void setWifiConnectBlacklist(@Nullable List<String> ssidList) {
+    public void setWifiConnectBlacklist( List<String> ssidList) {
         try {
             iMdmService.setWifiConnectBlacklist(ssidList);
         } catch (Exception e) {
@@ -2481,7 +2479,7 @@ public class MdmManager {
      *
      * @return ssid集合
      */
-    @Nullable
+    
 
     public List<String> getWifiConnectBlacklist() {
         try {
@@ -2510,7 +2508,7 @@ public class MdmManager {
      * @param ssidList ssid集合
      */
 
-    public void setWifiConnectWhitelist(@Nullable List<String> ssidList) {
+    public void setWifiConnectWhitelist( List<String> ssidList) {
         try {
             iMdmService.setWifiConnectWhitelist(ssidList);
         } catch (Exception e) {
@@ -2523,7 +2521,7 @@ public class MdmManager {
      *
      * @return ssid集合
      */
-    @Nullable
+    
 
     public List<String> getWifiConnectWhitelist() {
         try {
@@ -2553,7 +2551,7 @@ public class MdmManager {
      *                 例如 com.android.launcher3/.Launcher
      */
 
-    public void setDefaultHome(@NonNull String launcher) {
+    public void setDefaultHome( String launcher) {
         try {
             iMdmService.setDefaultHome(launcher);
         } catch (Exception e) {
