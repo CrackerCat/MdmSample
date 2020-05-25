@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">MdmSample</string>
+    <string name="reboot">重启</string>
+    <string name="iccid">ICCID编号</string>
+    <string name="imei">IMEI号</string>
+    <string name="get_iccid">获取ICCID编号失败</string>
+    <string name="failed">获取失败</string>
+    <string name="device_info">硬件及系统信息</string>
+    <string name="root">root状态</string>
+    <string name="system">系统完整性</string>
+    <string name="desc" translatable="false"/>
+    <string name="apn_query_by_name">请输入apn名称</string>
+    <string name="nothing">没有设置</string>
+
+    <string name="apn_name">名称</string>
+    <string name="apn_proxy">代理</string>
+    <string name="apn_port">端口</string>
+    <string name="apn_username">用户名</string>
+    <string name="apn_password">密码</string>
+    <string name="apn_server">服务器</string>
+    <string name="apn_mms_proxy">彩信代理</string>
+    <string name="apn_mms_port">彩信端口</string>
+    <string name="apn_edit_apn">修改接入点</string>
+
+    <string name="apn_apn" translatable="false">Apn</string>
+    <string name="apn_mmsc" translatable="false">MMSC</string>
+    <string name="apn_mcc" translatable="false">MCC</string>
+    <string name="apn_mnc" translatable="false">MNC</string>
+
+</resources>

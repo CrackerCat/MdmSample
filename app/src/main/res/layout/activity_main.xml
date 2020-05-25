@@ -1,0 +1,1057 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".MainActivity">
+
+            <Button
+                android:id="@+id/reboot"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/reboot"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/listiccid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/iccid"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/reboot" />
+
+            <Button
+                android:id="@+id/listimei"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/imei"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/listiccid" />
+
+            <Button
+                android:id="@+id/getdeviceinfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/device_info"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/listimei" />
+
+            <Button
+                android:id="@+id/getrootstate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/root"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/getdeviceinfo" />
+
+            <Button
+                android:id="@+id/getsystemintegrity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/system"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/getrootstate" />
+
+            <Button
+                android:id="@+id/getdevicestate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="运行状态"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/getsystemintegrity" />
+
+            <Button
+                android:id="@+id/getapptrafficinfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="应用流量查询"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/getdevicestate" />
+
+            <Button
+                android:id="@+id/lockdevice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="终端锁定"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/getapptrafficinfo" />
+
+            <Button
+                android:id="@+id/unlockdevice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="终端解锁"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/lockdevice" />
+
+            <Button
+                android:id="@+id/wipedevicedata"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="数据擦除"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/unlockdevice" />
+
+            <Button
+                android:id="@+id/shutdowndevice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="关机"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/wipedevicedata" />
+
+            <Button
+                android:id="@+id/getdeviceposition"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="获取当前定位信息"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/shutdowndevice" />
+
+            <Button
+                android:id="@+id/getwlanconfiguration"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="wlan配置"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/getdeviceposition" />
+
+
+            <Button
+                android:id="@+id/getallapn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="APN配置"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/getwlanconfiguration" />
+
+
+            <Button
+                android:id="@+id/setsystime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="修改日期与时间"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/getallapn" />
+
+
+            <Button
+                android:id="@+id/installpackage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="静默安装应用"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/setsystime" />
+
+
+            <Button
+                android:id="@+id/uninstallpackage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="静默卸载应用"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/installpackage" />
+
+
+            <Button
+                android:id="@+id/setappinstallationpolicies"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="应用安装黑白名单设置"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/uninstallpackage" />
+
+
+            <Button
+                android:id="@+id/setappuninstallationpolicies"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="应用卸载黑白名单设置"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/setappinstallationpolicies" />
+
+            <Button
+                android:id="@+id/setrunapppolicies"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="应用运行管控黑白名单设置"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/setappuninstallationpolicies" />
+
+
+            <Button
+                android:id="@+id/setapppermission"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="应用运行管控黑白名单设置"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/setrunapppolicies" />
+
+            <Button
+                android:id="@+id/setvoicepolicies"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="通话功能状态"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/setapppermission" />
+
+            <Button
+                android:id="@+id/setsmspolicies"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="短信管控"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/setvoicepolicies" />
+
+
+            <Button
+                android:id="@+id/setwlanappolicies"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="网络共享管控"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/setsmspolicies" />
+
+
+            <Button
+                android:id="@+id/getsmspolicies"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="短信功能状态"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/setwlanappolicies" />
+
+
+            <Button
+                android:id="@+id/getcapturescreenpolicies"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="截屏录屏功能状态"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/getsmspolicies" />
+
+
+            <Button
+                android:id="@+id/getuserapnmgrpolicies"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="APN管理控制状态"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/getcapturescreenpolicies" />
+
+            <Button
+                android:id="@+id/executeshelltosetiptables"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="网络规则管控"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/getuserapnmgrpolicies" />
+
+            <Button
+                android:id="@+id/getuserpasswordpolicies"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="锁屏密码策略"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/executeshelltosetiptables" />
+
+            <Button
+                android:id="@+id/getusertimemgrpolicies"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="时间设置策略"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/getuserpasswordpolicies" />
+
+            <Button
+                android:id="@+id/getfactoryresetpolicies"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="恢复出厂设置控制"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/getusertimemgrpolicies" />
+
+            <Button
+                android:id="@+id/getdevelopmentmodepolicies"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="开发调试模式控制"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/getfactoryresetpolicies" />
+
+            <Button
+                android:id="@+id/getsystemupdatepolicies"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="系统升级控制"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/getdevelopmentmodepolicies" />
+
+            <Button
+                android:id="@+id/getwlanpolicies"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="WLAN管控"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/getsystemupdatepolicies" />
+
+            <Button
+                android:id="@+id/getdataconnectivitypolicies"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="移动数据网络控制"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/getwlanpolicies" />
+
+            <Button
+                android:id="@+id/setbluetoothpolicies"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="蓝牙设备控制"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/getdataconnectivitypolicies" />
+
+            <Button
+                android:id="@+id/getnfcpolicies"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="NFC 管控"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/setbluetoothpolicies" />
+
+            <Button
+                android:id="@+id/getgpspolicies"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="定位服务控制"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/getnfcpolicies" />
+
+            <Button
+                android:id="@+id/getusbdatapolicies"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="USB工作模式控制"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/getgpspolicies" />
+
+            <Button
+                android:id="@+id/getmicrophonepolicies"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="麦克风管控"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/getusbdatapolicies" />
+
+            <Button
+                android:id="@+id/getspeakerpolicies"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="扬声器管控"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/getmicrophonepolicies" />
+
+            <Button
+                android:id="@+id/getcamerapolicies"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="摄像头管控"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/getspeakerpolicies" />
+
+            <Button
+                android:id="@+id/getflashpolicies"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="闪光灯管控"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/getcamerapolicies" />
+
+            <Button
+                android:id="@+id/getperipheralpolicies"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="扩展外设控制"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/getflashpolicies" />
+
+            <Button
+                android:id="@+id/establishvpnconnection"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="建立VPN连接"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/getperipheralpolicies" />
+
+            <Button
+                android:id="@+id/disestablishvpnconnection"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="断开VPN连接"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/establishvpnconnection" />
+
+            <Button
+                android:id="@+id/getvpnservicestate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="VPN服务状态查询接口"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/disestablishvpnconnection" />
+
+            <Button
+                android:id="@+id/setstatusbarpullenable"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="设置状态栏是否可以下拉"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/getvpnservicestate" />
+
+            <Button
+                android:id="@+id/getbatterypercent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="获取电池电量"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/setstatusbarpullenable" />
+
+            <Button
+                android:id="@+id/getwifissid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="获取WifiSsid"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/getbatterypercent" />
+
+            <Button
+                android:id="@+id/getrssi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="获取Rssi"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/getwifissid" />
+
+            <Button
+                android:id="@+id/setdefaultinputmethod"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="设置默认输入法"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/getrssi" />
+
+
+            <Button
+                android:id="@+id/setforegroundautostartapp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="设置前台自启动应用"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/setdefaultinputmethod" />
+
+
+            <Button
+                android:id="@+id/clearforegroundautostartapp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="清除前台自启动应用"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/setforegroundautostartapp" />
+
+
+            <Button
+                android:id="@+id/getforegroundautostartapp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="获取前台自启动应用包名列表"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/clearforegroundautostartapp" />
+
+            <Button
+                android:id="@+id/sethomeenable"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="设置Home键状态"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/getforegroundautostartapp" />
+
+
+            <Button
+                android:id="@+id/getrecentenabled"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="设置多任务键状态"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/sethomeenable" />
+
+            <Button
+                android:id="@+id/getbackenabled"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="设置返回键状态"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/getrecentenabled" />
+
+            <Button
+                android:id="@+id/getwifienabled"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="设置wifi状态"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/getbackenabled" />
+
+
+            <Button
+                android:id="@+id/getbluetoothenabled"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="设置蓝牙状态"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/getwifienabled" />
+
+
+            <Button
+                android:id="@+id/getdebugenabled"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="设置usb调试状态"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/getbluetoothenabled" />
+
+            <Button
+                android:id="@+id/getgpsenabled"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="设置GPS状态"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/getdebugenabled" />
+
+            <Button
+                android:id="@+id/getgpsmode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="设置GPS工作模式"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/getgpsenabled" />
+
+            <Button
+                android:id="@+id/getnfcenabled"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="设置NFC状态"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/getgpsmode" />
+
+
+            <Button
+                android:id="@+id/getsim1enabled"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="设置SIM1状态"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/getnfcenabled" />
+
+
+            <Button
+                android:id="@+id/getsim2enabled"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="设置SIM2状态"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/getsim1enabled" />
+
+
+            <Button
+                android:id="@+id/setappblacklist"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="设置app黑名单"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/getsim2enabled" />
+
+
+            <Button
+                android:id="@+id/clearappblacklist"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="清除app黑名单"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/setappblacklist" />
+
+
+            <Button
+                android:id="@+id/getappblacklist"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="获取app黑名单"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/clearappblacklist" />
+
+
+            <Button
+                android:id="@+id/setappwhitelist"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="设置app白名单"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/getappblacklist" />
+
+
+            <Button
+                android:id="@+id/clearappwhitelist"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="清除app白名单"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/setappwhitelist" />
+
+
+            <Button
+                android:id="@+id/getappwhitelist"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="获取app白名单"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/clearappwhitelist" />
+
+
+            <Button
+                android:id="@+id/getcallenable"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="设置是否可以接打电话"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/getappwhitelist" />
+
+
+            <Button
+                android:id="@+id/setalwaysrunapps"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="设置始终运行app"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/getcallenable" />
+
+
+            <Button
+                android:id="@+id/clearalwaysrunapps"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="清除始终运行app"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/setalwaysrunapps" />
+
+
+            <Button
+                android:id="@+id/getalwaysrunapps"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="获取始终运行app"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/clearalwaysrunapps" />
+
+            <Button
+                android:id="@+id/applynetworkwhitelistrules"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="设置网络访问白名单"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/getalwaysrunapps" />
+
+
+            <Button
+                android:id="@+id/clearnetworkwhitelistrules"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="清除网络白名单"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/applynetworkwhitelistrules" />
+
+            <Button
+                android:id="@+id/getnetworkwhitelistrules"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="获取网络白名单列表"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/clearnetworkwhitelistrules" />
+
+            <Button
+                android:id="@+id/applynetworkblacklistrules"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="设置网络访问黑名单"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/getnetworkwhitelistrules" />
+
+
+            <Button
+                android:id="@+id/clearnetworkblacklistrules"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="清除网络黑名单"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/applynetworkblacklistrules" />
+
+
+            <Button
+                android:id="@+id/getnetworkblacklistrules"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="获取网络黑名单列表"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/clearnetworkblacklistrules" />
+
+
+            <Button
+                android:id="@+id/setuninstallblacklist"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="设置卸载应用黑名单"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/getnetworkblacklistrules" />
+
+
+            <Button
+                android:id="@+id/removealluninstallblacklist"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="移除全部卸载应用黑名单"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/setuninstallblacklist" />
+
+
+            <Button
+                android:id="@+id/getuninstallblacklist"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="获取卸载黑名单列表"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/removealluninstallblacklist" />
+
+            <Button
+                android:id="@+id/adduninstallblacklist"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="添加卸载黑名单列表"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/getuninstallblacklist" />
+
+
+            <Button
+                android:id="@+id/removeuninstallblacklist"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="移除卸载黑名单列表"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/adduninstallblacklist" />
+
+
+            <Button
+                android:id="@+id/setbluetoothwhitelist"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="设置蓝牙白名单"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/removeuninstallblacklist" />
+
+
+            <Button
+                android:id="@+id/getbluetoothwhitelist"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="获取蓝牙白名单列表"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/setbluetoothwhitelist" />
+
+
+            <Button
+                android:id="@+id/getsafemodeenabled"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="获取安全模式是否可用"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/getbluetoothwhitelist" />
+
+            <Button
+                android:id="@+id/getfactoryresetenabled"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="配置恢复出厂是否可用"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/getsafemodeenabled" />
+
+
+            <Button
+                android:id="@+id/installotapackage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="安装ota升级包"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/getfactoryresetenabled" />
+
+
+            <Button
+                android:id="@+id/getnavigationbarenabled"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="设置虚拟导航栏是否显示"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/installotapackage" />
+
+
+            <Button
+                android:id="@+id/setsecretcode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="mdm启动暗码设置"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/getnavigationbarenabled" />
+
+            <Button
+                android:id="@+id/installnetappwithoperation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="安装网络应用并运行"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/setsecretcode" />
+
+            <Button
+                android:id="@+id/installnetapp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="安装网络应用"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/installnetappwithoperation" />
+
+            <Button
+                android:id="@+id/setntpserver"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="设置ntp服务器地址"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/installnetapp" />
+
+            <Button
+                android:id="@+id/deletevpn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="删除vpn"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/setntpserver" />
+
+            <Button
+                android:id="@+id/setwificonnectblacklist"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="设置wifi连接黑名单"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/deletevpn" />
+
+            <Button
+                android:id="@+id/getwificonnectblacklist"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="获取wifi连接黑名单"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/setwificonnectblacklist" />
+
+
+            <Button
+                android:id="@+id/clearwificonnectBblacklist"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="清除wifi连接黑名单"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/getwificonnectblacklist" />
+
+            <Button
+                android:id="@+id/setwificonnectwhitelist"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="设置wifi连接白名单"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/clearwificonnectBblacklist" />
+
+            <Button
+                android:id="@+id/getwificonnectwhitelist"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="获取wifi连接白名单"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/setwificonnectwhitelist" />
+
+            <Button
+                android:id="@+id/clearwificonnectwhitelist"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="清除wifi连接白名单"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/getwificonnectwhitelist" />
+
+            <Button
+                android:id="@+id/setdefaulthome"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="设置默认桌面"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/clearwificonnectwhitelist" />
+
+
+            <Button
+                android:id="@+id/getkeyguardleftenable"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="设置锁屏桌面左下角图标是否显示"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/setdefaulthome" />
+
+            <Button
+                android:id="@+id/getkeyguardrightenable"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="设置锁屏桌面右下角图标是否显示"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/getkeyguardleftenable" />
+
+            <Button
+                android:id="@+id/downloadfile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="下载文件"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/getkeyguardrightenable" />
+
+            <Button
+                android:id="@+id/disconnectmqtt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="断开mqtt连接"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/downloadfile" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingStart="20dp"
+    android:paddingEnd="20dp"
+    tools:context=".allapn.EditApnActivity">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <TextView
+                style="@style/MdmApn.Title"
+                android:text="@string/apn_name" />
+
+            <EditText
+                android:id="@+id/apnName"
+                style="@style/MdmApn"
+                tools:ignore="Autofill,LabelFor,TextFields" />
+
+            <TextView
+                style="@style/MdmApn.Title"
+                android:text="@string/apn_apn" />
+
+            <EditText
+                android:id="@+id/apnApn"
+                style="@style/MdmApn"
+                tools:ignore="Autofill,LabelFor,TextFields" />
+
+
+            <TextView
+                style="@style/MdmApn.Title"
+                android:text="类型" />
+
+            <EditText
+                android:id="@+id/apnType"
+                style="@style/MdmApn"
+                tools:ignore="Autofill,LabelFor,TextFields" />
+
+
+            <TextView
+                style="@style/MdmApn.Title"
+                android:text="运营商网络码" />
+
+            <EditText
+                android:id="@+id/apnNumeric"
+                style="@style/MdmApn"
+                tools:ignore="Autofill,LabelFor,TextFields" />
+
+            <TextView
+                style="@style/MdmApn.Title"
+                android:text="@string/apn_proxy" />
+
+            <EditText
+                android:id="@+id/apnProxy"
+                style="@style/MdmApn"
+                tools:ignore="Autofill,LabelFor,TextFields" />
+
+            <TextView
+                style="@style/MdmApn.Title"
+                android:text="@string/apn_port" />
+
+            <EditText
+                android:id="@+id/apnPort"
+                style="@style/MdmApn"
+                tools:ignore="Autofill,LabelFor,TextFields" />
+
+            <TextView
+                style="@style/MdmApn.Title"
+                android:text="@string/apn_username" />
+
+            <EditText
+                android:id="@+id/apnUsername"
+                style="@style/MdmApn"
+                tools:ignore="Autofill,LabelFor,TextFields" />
+
+            <TextView
+                style="@style/MdmApn.Title"
+                android:text="@string/apn_password" />
+
+            <EditText
+                android:id="@+id/apnPassword"
+                style="@style/MdmApn"
+                tools:ignore="Autofill,LabelFor,TextFields" />
+
+            <TextView
+                style="@style/MdmApn.Title"
+                android:text="@string/apn_server" />
+
+            <EditText
+                android:id="@+id/apnServer"
+                style="@style/MdmApn"
+                tools:ignore="Autofill,LabelFor,TextFields" />
+
+            <TextView
+                style="@style/MdmApn.Title"
+                android:text="@string/apn_mmsc" />
+
+            <EditText
+                android:id="@+id/apnMmsc"
+                style="@style/MdmApn"
+                tools:ignore="Autofill,LabelFor,TextFields" />
+
+            <TextView
+                style="@style/MdmApn.Title"
+                android:text="@string/apn_mms_proxy" />
+
+            <EditText
+                android:id="@+id/apnMmsProxy"
+                style="@style/MdmApn"
+                tools:ignore="Autofill,LabelFor,TextFields" />
+
+            <TextView
+                style="@style/MdmApn.Title"
+                android:text="@string/apn_mms_port" />
+
+            <EditText
+                android:id="@+id/apnMmsPort"
+                style="@style/MdmApn"
+                tools:ignore="Autofill,LabelFor,TextFields" />
+
+            <TextView
+                style="@style/MdmApn.Title"
+                android:text="@string/apn_mcc" />
+
+            <EditText
+                android:id="@+id/apnMcc"
+                style="@style/MdmApn"
+                tools:ignore="Autofill,LabelFor,TextFields" />
+
+            <TextView
+                style="@style/MdmApn.Title"
+                android:text="@string/apn_mnc" />
+
+            <EditText
+                android:id="@+id/apnMnc"
+                style="@style/MdmApn"
+                tools:ignore="Autofill,LabelFor,TextFields" />
+
+            <Button
+                android:id="@+id/apnCreate"
+                style="@style/MdmApn"
+                android:text="创建APN"
+                tools:ignore="Autofill,LabelFor,TextFields" />
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</LinearLayout>
