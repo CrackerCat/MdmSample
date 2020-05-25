@@ -29,18 +29,8 @@ android {
 
 }
 
-//生成jar包
-task makeJar(type: Copy) {
-    delete 'build/outputs/mdmmanager.jar'
-    from('build/intermediates/compile_library_classes_jar/release/') //jar文件来源
-    into('build/libs/') //生成路径
-    include('classes.jar')
-    rename('classes.jar', 'mdmmanager.jar') //命名为network.jar
-}
-
-makeJar.dependsOn(build)
 
 dependencies {
-    implementation 'androidx.appcompat:appcompat:1.1.0'
+    compileOnly files('libs/serviceManager.jar')
 }
 

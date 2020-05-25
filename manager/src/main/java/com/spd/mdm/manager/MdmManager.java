@@ -1,11 +1,11 @@
 package com.spd.mdm.manager;
 
+import android.annotation.NonNull;
+import android.annotation.Nullable;
 import android.content.ContentValues;
 import android.os.RemoteException;
 import android.os.ServiceManager;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
 import java.util.List;
 
@@ -61,7 +61,6 @@ public class MdmManager {
      * @return 成功：返回包含所有IMEI编号的列表；失败：返回空指针null
      */
     @Nullable
-
     public String[] listImei() {
         try {
             return iMdmService.listImei();
