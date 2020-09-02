@@ -32,6 +32,7 @@ interface IMdmService {
 //       List<String[]> getAppRunInfo();
 //       List<String[]> getAppRuntimeExceptionInfo();
        boolean installPackage(String pathToApk);
+       boolean installPackageSync(String pathToApk);
        boolean uninstallPackage(String appPackageName);
        boolean setAppInstallationPolicies(int mode, in String[] appPackageNames);
        String[] getAppInstallationPolicies();

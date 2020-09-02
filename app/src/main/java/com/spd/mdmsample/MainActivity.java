@@ -200,7 +200,7 @@ public class MainActivity extends AppCompatActivity {
 
         //installPackage 静默安装应用
         findViewById(R.id.installpackage).setOnClickListener(v -> {
-            @SuppressLint("SdCardPath") boolean message = MdmManager.getInstance().installPackage("/sdcard/test.apk");
+            @SuppressLint("SdCardPath") boolean message = MdmManager.getInstance().installPackageSync("/sdcard/test.apk");
             StringBuilder msg = new StringBuilder();
             if (message) {
                 msg.append("安装根目录下test.apk成功").append("\n");
