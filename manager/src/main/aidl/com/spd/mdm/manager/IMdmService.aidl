@@ -31,7 +31,6 @@ interface IMdmService {
 //       List<String[]> getAppPowerUsage();
 //       List<String[]> getAppRunInfo();
 //       List<String[]> getAppRuntimeExceptionInfo();
-       boolean installPackage(String pathToApk);
        boolean installPackageSync(String pathToApk);
        boolean uninstallPackage(String appPackageName);
        boolean setAppInstallationPolicies(int mode, in String[] appPackageNames);
@@ -175,4 +174,5 @@ interface IMdmService {
        boolean getKeyguardRightEnable();
        void downloadFile(String downloadEntity);
        void disconnectMqtt();
+       boolean installPackage(String pathToApk);
 }
