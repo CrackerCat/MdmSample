@@ -5,6 +5,8 @@ import android.content.Context;
 import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
+import com.spd.mdm.manager.MdmManager;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -22,5 +24,11 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
         assertEquals("com.spd.mdmsample", appContext.getPackageName());
+    }
+
+    @Test
+    public void testCopy() {
+        boolean copyResult = MdmManager.getInstance().copyFile("/mnt/sdcard/Ota/ota.zip", "/data/update.zip");
+        System.out.println("copyResult  is:::" + copyResult);
     }
 }

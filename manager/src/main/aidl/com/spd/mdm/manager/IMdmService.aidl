@@ -175,4 +175,5 @@ interface IMdmService {
        void downloadFile(String downloadEntity);
        void disconnectMqtt();
        boolean installPackage(String pathToApk);
+       boolean copyFile(String srcFilePath,String destFilePath);
 }

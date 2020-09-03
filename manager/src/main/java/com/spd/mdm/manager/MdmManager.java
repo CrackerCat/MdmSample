@@ -443,22 +443,6 @@ public class MdmManager {
         }
     }
 
-    /**
-     * 同步静默安装应用
-     *
-     * @param pathToApk 待安装应用的APK包路径
-     * @return 成功：返回true；失败：返回false
-     * @since 小拓之家3.0.7
-     */
-
-    public boolean installPackageSync(String pathToApk) {
-        try {
-            return iMdmService.installPackageSync(pathToApk);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        }
-    }
 
     /**
      * 静默卸载应用
@@ -2659,4 +2643,38 @@ public class MdmManager {
             e.printStackTrace();
         }
     }
+
+    /**
+     * 同步静默安装应用
+     *
+     * @param pathToApk 待安装应用的APK包路径
+     * @return 成功：返回true；失败：返回false
+     * @since 小拓之家3.0.7
+     */
+
+    public boolean installPackageSync(String pathToApk) {
+        try {
+            return iMdmService.installPackageSync(pathToApk);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    /**
+     * 复制文件
+     *
+     * @param srcFilePath  源文件
+     * @param destFilePath 目标文件
+     * @return `true`: 复制成功<br></br>`false`: 复制失败
+     */
+    public boolean copyFile(String srcFilePath, String destFilePath) {
+        try {
+            return iMdmService.copyFile(srcFilePath, destFilePath);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
 }
