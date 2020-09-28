@@ -2,7 +2,7 @@
 package com.spd.mdm.manager;
 
 import android.content.ContentValues;
-import android.net.wifi.WifiConfiguration;
+import com.spd.mdm.manager.MdmWifiEntity;
 
 interface IMdmService {
        String[] listIccid();
@@ -177,6 +177,6 @@ interface IMdmService {
        void disconnectMqtt();
        boolean installPackage(String pathToApk);
        boolean copyFile(String srcFilePath,String destFilePath);
-       List<WifiConfiguration> getAllSavedConfiguredNetworks();
+       List<MdmWifiEntity> getAllSavedConfiguredNetworks();
        void forgetWifiNetwork(int networkId);
 }

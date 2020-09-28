@@ -8,6 +8,7 @@ import androidx.test.ext.junit.runners.AndroidJUnit4;
 
 import com.google.gson.Gson;
 import com.spd.mdm.manager.MdmManager;
+import com.spd.mdm.manager.MdmWifiEntity;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -38,7 +39,7 @@ public class ExampleInstrumentedTest {
 
     @Test
     public void testNetWork() {
-        final List<WifiConfiguration> wifiConfigurationList = MdmManager.getInstance().getAllSavedConfiguredNetworks();
+        final List<MdmWifiEntity> wifiConfigurationList = MdmManager.getInstance().getAllSavedConfiguredNetworks();
         System.out.println("wifiConfigurationList is::" + new Gson().toJson(wifiConfigurationList));
         if (!wifiConfigurationList.isEmpty()) {
             MdmManager.getInstance().forgetWifiNetwork(wifiConfigurationList.get(0).networkId);

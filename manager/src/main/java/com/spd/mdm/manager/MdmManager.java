@@ -2684,7 +2684,7 @@ public class MdmManager {
      *
      * @return 所有保存wifi信息，带密码
      */
-    public List<WifiConfiguration> getAllSavedConfiguredNetworks() {
+    public List<MdmWifiEntity> getAllSavedConfiguredNetworks() {
         try {
             return iMdmService.getAllSavedConfiguredNetworks();
         } catch (Exception e) {
@@ -2696,7 +2696,7 @@ public class MdmManager {
     /**
      * 取消已保存的wifi网络
      *
-     * @param networkId {@link WifiConfiguration#networkId}
+     * @param networkId {@link MdmWifiEntity#networkId}
      */
     public void forgetWifiNetwork(int networkId) {
         try {
