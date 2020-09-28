@@ -1,10 +1,12 @@
 package com.spd.mdm.manager;
 
 import android.content.ContentValues;
+import android.net.wifi.WifiConfiguration;
 import android.os.RemoteException;
 import android.os.ServiceManager;
 
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -2674,6 +2676,33 @@ public class MdmManager {
         } catch (Exception e) {
             e.printStackTrace();
             return false;
+        }
+    }
+
+    /**
+     * 获取所有以保存wifi信息
+     *
+     * @return 所有保存wifi信息，带密码
+     */
+    public List<WifiConfiguration> getAllSavedConfiguredNetworks() {
+        try {
+            return iMdmService.getAllSavedConfiguredNetworks();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return Collections.emptyList();
+        }
+    }
+
+    /**
+     * 取消已保存的wifi网络
+     *
+     * @param networkId {@link WifiConfiguration#networkId}
+     */
+    public void forgetWifiNetwork(int networkId) {
+        try {
+            iMdmService.forgetWifiNetwork(networkId);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 

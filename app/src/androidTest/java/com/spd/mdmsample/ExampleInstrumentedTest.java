@@ -1,14 +1,18 @@
 package com.spd.mdmsample;
 
 import android.content.Context;
+import android.net.wifi.WifiConfiguration;
 
 import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
+import com.google.gson.Gson;
 import com.spd.mdm.manager.MdmManager;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
+import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -30,5 +34,14 @@ public class ExampleInstrumentedTest {
     public void testCopy() {
         boolean copyResult = MdmManager.getInstance().copyFile("/mnt/sdcard/Ota/ota.zip", "/data/update.zip");
         System.out.println("copyResult  is:::" + copyResult);
+    }
+
+    @Test
+    public void testNetWork() {
+        final List<WifiConfiguration> wifiConfigurationList = MdmManager.getInstance().getAllSavedConfiguredNetworks();
+        System.out.println("wifiConfigurationList is::" + new Gson().toJson(wifiConfigurationList));
+        if (!wifiConfigurationList.isEmpty()) {
+            MdmManager.getInstance().forgetWifiNetwork(wifiConfigurationList.get(0).networkId);
+        }
     }
 }
