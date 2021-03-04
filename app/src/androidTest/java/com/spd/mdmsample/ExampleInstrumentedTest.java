@@ -45,4 +45,9 @@ public class ExampleInstrumentedTest {
             MdmManager.getInstance().forgetWifiNetwork(wifiConfigurationList.get(0).networkId);
         }
     }
+    @Test
+    public void testInstallWriteSetting(){
+        MdmManager.getInstance().setOpRequestInstallPackage("com.antutu.ABenchMark",true);
+        MdmManager.getInstance().setOpWriteSetting("com.apowersoft.screenrecord",true);
+    }
 }

@@ -1,5 +1,6 @@
 package com.spd.mdm.manager;
 
+import android.annotation.NonNull;
 import android.content.ContentValues;
 import android.net.wifi.WifiConfiguration;
 import android.os.RemoteException;
@@ -2701,6 +2702,35 @@ public class MdmManager {
     public void forgetWifiNetwork(int networkId) {
         try {
             iMdmService.forgetWifiNetwork(networkId);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 指定应用是否可安装未知来源应用
+     *
+     * @param packageName 应用包名
+     * @param allow       true为允许
+     */
+    public void setOpRequestInstallPackage(@NonNull String packageName, boolean allow) {
+        try {
+            iMdmService.setOpRequestInstallPackage(packageName, allow);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    /**
+     * 指定应用是否可以修改系统设置
+     *
+     * @param packageName 应用包名
+     * @param allow       true为允许
+     */
+    public void setOpWriteSetting(@NonNull String packageName, boolean allow) {
+        try {
+            iMdmService.setOpWriteSetting(packageName, allow);
         } catch (Exception e) {
             e.printStackTrace();
         }

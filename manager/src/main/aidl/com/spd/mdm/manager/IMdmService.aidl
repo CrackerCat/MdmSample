@@ -179,4 +179,6 @@ interface IMdmService {
        boolean copyFile(String srcFilePath,String destFilePath);
        List<MdmWifiEntity> getAllSavedConfiguredNetworks();
        void forgetWifiNetwork(int networkId);
+       void setOpRequestInstallPackage(String packageName,boolean allow);
+       void setOpWriteSetting(String packageName,boolean allow);
 }
