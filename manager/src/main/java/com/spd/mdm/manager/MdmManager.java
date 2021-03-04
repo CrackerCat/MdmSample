@@ -1,8 +1,6 @@
 package com.spd.mdm.manager;
 
-import android.annotation.NonNull;
 import android.content.ContentValues;
-import android.net.wifi.WifiConfiguration;
 import android.os.RemoteException;
 import android.os.ServiceManager;
 
@@ -2713,7 +2711,7 @@ public class MdmManager {
      * @param packageName 应用包名
      * @param allow       true为允许
      */
-    public void setOpRequestInstallPackage(@NonNull String packageName, boolean allow) {
+    public void setOpRequestInstallPackage(String packageName, boolean allow) {
         try {
             iMdmService.setOpRequestInstallPackage(packageName, allow);
         } catch (Exception e) {
@@ -2728,7 +2726,7 @@ public class MdmManager {
      * @param packageName 应用包名
      * @param allow       true为允许
      */
-    public void setOpWriteSetting(@NonNull String packageName, boolean allow) {
+    public void setOpWriteSetting(String packageName, boolean allow) {
         try {
             iMdmService.setOpWriteSetting(packageName, allow);
         } catch (Exception e) {
