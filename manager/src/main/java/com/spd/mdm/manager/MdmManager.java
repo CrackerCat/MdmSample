@@ -1,6 +1,9 @@
 package com.spd.mdm.manager;
 
+import android.content.ContentResolver;
 import android.content.ContentValues;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.RemoteException;
 import android.os.ServiceManager;
 
@@ -20,9 +23,19 @@ public class MdmManager {
     private static final BaseSingleton<MdmManager> INSTANCE = new BaseSingleton<MdmManager>() {
         @Override
         protected MdmManager create() {
+            try {
+                //MDM3.0之后，MDM应用未启动也可以直接调用
+                final Uri MDM_URI = Uri.parse("content://com.spd.provider.MDM.MDM_PROVIDER/binder");
+                final ContentResolver resolver = MdmManagerContext.getInstance().getContext().getContentResolver();
+                final Cursor cursor = resolver.query(MDM_URI, null, null, null, null);
+                if (cursor != null) cursor.close();
+            } catch (Exception e) {
+                //连接远程provider
+                e.printStackTrace();
+            }
             iMdmService = IMdmService.Stub.asInterface(ServiceManager.getService("mdmSpdService"));
             if (iMdmService == null) {
-                throw new RuntimeException("请安装小拓之家3.0.3或以上版本并打开");
+                throw new RuntimeException("请安装小拓之家3.3.0或以上版本");
             }
             return new MdmManager();
         }

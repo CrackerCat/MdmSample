@@ -1,1 +1,16 @@
-<manifest package="com.spd.mdm.manager" />
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.spd.mdm.manager">
+
+    <application>
+
+        <provider
+            android:name="com.spd.mdm.manager.MdmManagerProvider"
+            android:authorities="${applicationId}.mdm.manager.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/mdm_provider_path" />
+        </provider>
+    </application>
+</manifest>
