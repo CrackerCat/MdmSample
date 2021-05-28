@@ -8,13 +8,13 @@ apply plugin: 'kotlin-kapt'
 
 
 android {
-    compileSdkVersion 28
-    buildToolsVersion "29.0.3"
+    compileSdkVersion 30
+    buildToolsVersion "30.0.3"
 
     defaultConfig {
         applicationId "com.spd.mdmsample"
         minSdkVersion 23
-        targetSdkVersion 28
+        targetSdkVersion 30
         versionCode 1
         versionName "1.0"
 
@@ -64,10 +64,10 @@ dependencies {
     implementation 'org.jetbrains.anko:anko-appcompat-v7:0.10.7'
     implementation 'org.jetbrains.anko:anko-appcompat-v7-coroutines:0.10.7'
 
-    implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.4.0'
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.5.10'
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.3'
 
-    releaseImplementation 'com.github.SpeedataApp:MdmSample:1.5'
+    releaseImplementation 'com.github.SpeedataApp:MdmSample:1.6'
     debugImplementation project(path: ':manager')
 }
 

@@ -1,11 +1,14 @@
 package com.spd.mdm.manager;
 
+import android.Manifest;
 import android.content.ContentResolver;
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.RemoteException;
 import android.os.ServiceManager;
+import android.view.Surface;
 
 
 import java.util.Collections;
@@ -2747,4 +2750,112 @@ public class MdmManager {
         }
     }
 
+    /**
+     * 截图
+     *
+     * @param savePath 保存到指定路径
+     * @return 是否截图成功, 错误信息tag为takeScreenshot
+     * @since MDM 3.3.2
+     */
+    public boolean takeScreenshot(String savePath) {
+        try {
+            return iMdmService.takeScreenshot(savePath);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+
+    }
+
+    /**
+     * 设置屏幕旋转角度
+     *
+     * @param rotation {@link Surface.Rotation}
+     * @since MDM3.3.11
+     */
+    public void setUserRotation(int rotation) {
+        try {
+            iMdmService.setUserRotation(rotation);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 同步静默卸载应用
+     *
+     * @param appPackageName 待卸载应用的包名
+     * @return 成功：返回true；失败：返回false
+     * @since MDM3.3.11
+     */
+    public boolean uninstallPackageSync(String appPackageName) {
+        try {
+            return iMdmService.uninstallPackageSync(appPackageName);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+
+    }
+
+    /**
+     * 根据包名获取应用全部运行时权限
+     *
+     * @param packageName 应用包名
+     * @return 所有运行时权限
+     * @since MDM3.3.11
+     */
+    public List<String> getRuntimePermissions(String packageName) {
+        try {
+            return iMdmService.getRuntimePermissions(packageName);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return Collections.emptyList();
+        }
+    }
+
+    /**
+     * 授予运行时权限
+     *
+     * @param packageName    应用包名
+     * @param permissionName 权限名称 -eg {@link Manifest.permission#CAMERA}
+     * @since MDM3.3.11
+     */
+    public void grantRuntimePermission(String packageName, String permissionName) {
+        try {
+            iMdmService.grantRuntimePermission(packageName, permissionName);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 撤销运行时权限
+     *
+     * @param packageName    应用包名
+     * @param permissionName 权限名称 -eg {@link Manifest.permission#CAMERA}
+     * @since MDM3.3.11
+     */
+    public void revokeRuntimePermission(String packageName, String permissionName) {
+        try {
+            iMdmService.revokeRuntimePermission(packageName, permissionName);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 安装应用后启动
+     *
+     * @param apkPath   apk文件路径
+     * @param startInfo 启动信息,支持Activity和Service,null时启动应用launcher
+     * @since MDM3.3.16
+     */
+    public void installPackageAndStart(String apkPath, Intent startInfo) {
+        try {
+            iMdmService.installPackageAndStart(apkPath, startInfo);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

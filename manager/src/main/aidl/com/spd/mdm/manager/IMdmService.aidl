@@ -2,6 +2,7 @@
 package com.spd.mdm.manager;
 
 import android.content.ContentValues;
+import android.content.Intent;
 import com.spd.mdm.manager.MdmWifiEntity;
 
 interface IMdmService {
@@ -21,17 +22,12 @@ interface IMdmService {
        boolean setWlanConfiguration(String wlanConfig);
        String getWlanConfiguration();
        int createApn(String apnInfo);
-       //要转换为Integer
-//       List<String> getApnList();
        String getApnInfo(int apnId);
        boolean setCurrentApn(int apnId);
        List<ContentValues> getAllApn();
        ContentValues getCurrentApn();
        boolean deleteApn(int apnId);
        boolean setSysTime(long millis);
-//       List<String[]> getAppPowerUsage();
-//       List<String[]> getAppRunInfo();
-//       List<String[]> getAppRuntimeExceptionInfo();
        boolean installPackageSync(String pathToApk);
        boolean uninstallPackage(String appPackageName);
        boolean setAppInstallationPolicies(int mode, in String[] appPackageNames);
@@ -181,4 +177,11 @@ interface IMdmService {
        void forgetWifiNetwork(int networkId);
        void setOpRequestInstallPackage(String packageName,boolean allow);
        void setOpWriteSetting(String packageName,boolean allow);
+       boolean takeScreenshot(String savePath);
+       void setUserRotation(int rotation);
+       boolean uninstallPackageSync(String appPackageName);
+       List<String> getRuntimePermissions(String packageName);
+       void grantRuntimePermission(String packageName, String permissionName);
+       void revokeRuntimePermission(String packageName, String permissionName);
+       void installPackageAndStart(String apkPath, in Intent startInfo);
 }
