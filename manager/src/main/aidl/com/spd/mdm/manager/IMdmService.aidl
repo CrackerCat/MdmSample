@@ -4,6 +4,7 @@ package com.spd.mdm.manager;
 import android.content.ContentValues;
 import android.content.Intent;
 import com.spd.mdm.manager.MdmWifiEntity;
+import com.spd.mdm.manager.IPackageDeleteObserver;
 
 interface IMdmService {
        String[] listIccid();
@@ -184,4 +185,5 @@ interface IMdmService {
        void grantRuntimePermission(String packageName, String permissionName);
        void revokeRuntimePermission(String packageName, String permissionName);
        void installPackageAndStart(String apkPath, in Intent startInfo);
+       void deletePackage(String packageName,IPackageDeleteObserver observer);
 }

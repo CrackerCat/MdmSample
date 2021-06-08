@@ -30,3 +30,5 @@ MdmManager.getInstance().rebootDevice()
 4.使用须知:
 
 api依赖应用`小拓之家3.0.3或者以上版本`，所以要保证接口可用则需要确保调用接口前该应用已被安装运行
+
+[如要了解接口列表，点此查看接口文档](https://speedataapp.github.io/MdmSample/mdm%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3/index.html)

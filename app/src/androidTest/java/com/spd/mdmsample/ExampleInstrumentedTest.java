@@ -2,12 +2,14 @@ package com.spd.mdmsample;
 
 import android.Manifest;
 import android.content.Context;
+import android.os.RemoteException;
 import android.view.Surface;
 
 import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
 import com.google.gson.Gson;
+import com.spd.mdm.manager.IPackageDeleteObserver;
 import com.spd.mdm.manager.MdmManager;
 import com.spd.mdm.manager.MdmWifiEntity;
 
@@ -91,5 +93,16 @@ public class ExampleInstrumentedTest {
     @Test
     public void testInstallPackageAndStart() {
         MdmManager.getInstance().installPackageAndStart("/sdcard/test.apk", null);
+    }
+    @Test
+    public void testDelatePackage(){
+        MdmManager.getInstance().deletePackage("com.tencent.mm", new IPackageDeleteObserver.Stub() {
+            @Override
+            public void packageDeleted(String packageName, int returnCode) {
+                if (returnCode==1){
+                    System.out.println(packageName+"卸载成功");
+                }
+            }
+        });
     }
 }

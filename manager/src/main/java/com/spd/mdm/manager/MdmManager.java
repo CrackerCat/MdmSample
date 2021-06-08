@@ -1477,7 +1477,7 @@ public class MdmManager {
      *
      * @deprecated replaced with {@link #rebootDevice()}
      */
-
+    @Deprecated
     public void reboot() {
 
     }
@@ -1487,7 +1487,7 @@ public class MdmManager {
      *
      * @deprecated replaced with {@link #shutdownDevice()} }
      */
-
+    @Deprecated
     public void shutdown() {
 
     }
@@ -1499,7 +1499,7 @@ public class MdmManager {
      * @return true成功
      * @deprecated replaced with {@link #setSysTime(long)}  }
      */
-
+    @Deprecated
     public boolean setDateTime(long dateTime) {
         return false;
     }
@@ -1511,7 +1511,7 @@ public class MdmManager {
      * @return true成功
      * @deprecated replaced with {@link #uninstallPackage(String)}  }
      */
-
+    @Deprecated
     public boolean uninstallApp(String packageName) {
         return false;
     }
@@ -1523,7 +1523,7 @@ public class MdmManager {
      * @return true成功
      * @deprecated replaced with {@link #installPackage(String)}   }
      */
-
+    @Deprecated
     public boolean installApp(String filePath) {
         return false;
     }
@@ -1955,7 +1955,7 @@ public class MdmManager {
      * @param enable false不可用
      * @deprecated replaced with {@link #setSystemUpdatePolicies(int)}
      */
-
+    @Deprecated
     public void setSystemUpdateEnable(boolean enable) {
     }
 
@@ -1965,7 +1965,7 @@ public class MdmManager {
      * @return true为可用
      * @deprecated replaced with {@link #getSystemUpdatePolicies()}
      */
-
+    @Deprecated
     public boolean getSystemUpdateEnable() {
         return false;
     }
@@ -2787,7 +2787,9 @@ public class MdmManager {
      * @param appPackageName 待卸载应用的包名
      * @return 成功：返回true；失败：返回false
      * @since MDM3.3.11
+     * @deprecated 该接口在Android11上无法正常工作，使用{@link #deletePackage(String, IPackageDeleteObserver)} } 代替
      */
+    @Deprecated
     public boolean uninstallPackageSync(String appPackageName) {
         try {
             return iMdmService.uninstallPackageSync(appPackageName);
@@ -2854,6 +2856,21 @@ public class MdmManager {
     public void installPackageAndStart(String apkPath, Intent startInfo) {
         try {
             iMdmService.installPackageAndStart(apkPath, startInfo);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 卸载应用带回调
+     *
+     * @param packageName 应用包名
+     * @param observer    卸载回调，可传null
+     * @since 11.0.6
+     */
+    public void deletePackage(String packageName, IPackageDeleteObserver observer) {
+        try {
+            iMdmService.deletePackage(packageName, observer);
         } catch (Exception e) {
             e.printStackTrace();
         }
