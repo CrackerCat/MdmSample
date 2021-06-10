@@ -21,28 +21,32 @@ import java.util.List;
  */
 public class MdmManager {
 
-    private static IMdmService iMdmService;
 
     private static final BaseSingleton<MdmManager> INSTANCE = new BaseSingleton<MdmManager>() {
         @Override
         protected MdmManager create() {
             try {
-                //MDM3.0之后，MDM应用未启动也可以直接调用
-                final Uri MDM_URI = Uri.parse("content://com.spd.provider.MDM.MDM_PROVIDER/binder");
+                //MDM11.0之后，MDM应用未启动也可以直接调用
+                final Uri mdmUri = Uri.parse("content://com.spd.provider.MDM.MDM_PROVIDER/binder");
                 final ContentResolver resolver = MdmManagerContext.getInstance().getContext().getContentResolver();
-                final Cursor cursor = resolver.query(MDM_URI, null, null, null, null);
+                final Cursor cursor = resolver.query(mdmUri, null, null, null, null);
                 if (cursor != null) cursor.close();
             } catch (Exception e) {
                 //连接远程provider
                 e.printStackTrace();
             }
-            iMdmService = IMdmService.Stub.asInterface(ServiceManager.getService("mdmSpdService"));
-            if (iMdmService == null) {
+            IMdmService mdmSpdService = IMdmService.Stub.asInterface(ServiceManager.getService("mdmSpdService"));
+            if (mdmSpdService == null) {
                 throw new RuntimeException("请安装小拓之家3.3.0或以上版本");
             }
             return new MdmManager();
         }
     };
+
+    private IMdmService getMdmService() {
+        return IMdmService.Stub.asInterface(ServiceManager.getService("mdmSpdService"));
+    }
+
 
     /**
      * 获取操作实例
@@ -63,7 +67,7 @@ public class MdmManager {
 
     public String[] listIccid() {
         try {
-            return iMdmService.listIccid();
+            return getMdmService().listIccid();
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -78,7 +82,7 @@ public class MdmManager {
 
     public String[] listImei() {
         try {
-            return iMdmService.listImei();
+            return getMdmService().listImei();
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -113,7 +117,7 @@ public class MdmManager {
 
     public String[] getDeviceInfo() {
         try {
-            return iMdmService.getDeviceInfo();
+            return getMdmService().getDeviceInfo();
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -128,7 +132,7 @@ public class MdmManager {
 
     public boolean getRootState() {
         try {
-            return iMdmService.getRootState();
+            return getMdmService().getRootState();
         } catch (Exception e) {
             e.printStackTrace();
             return false;
@@ -144,7 +148,7 @@ public class MdmManager {
 
     public boolean getSystemIntegrity() {
         try {
-            return iMdmService.getSystemIntegrity();
+            return getMdmService().getSystemIntegrity();
         } catch (Exception e) {
             e.printStackTrace();
             return false;
@@ -162,7 +166,7 @@ public class MdmManager {
 
     public String[] getDeviceState() {
         try {
-            return iMdmService.getDeviceState();
+            return getMdmService().getDeviceState();
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -184,7 +188,7 @@ public class MdmManager {
 
     public String[] getAppTrafficInfo(String appPackageName) {
         try {
-            return iMdmService.getAppTrafficInfo(appPackageName);
+            return getMdmService().getAppTrafficInfo(appPackageName);
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -199,7 +203,7 @@ public class MdmManager {
 
     public boolean lockDevice() {
         try {
-            return iMdmService.lockDevice();
+            return getMdmService().lockDevice();
         } catch (Exception e) {
             e.printStackTrace();
             return false;
@@ -214,7 +218,7 @@ public class MdmManager {
 
     public boolean unlockDevice() {
         try {
-            return iMdmService.unlockDevice();
+            return getMdmService().unlockDevice();
         } catch (Exception e) {
             e.printStackTrace();
             return false;
@@ -229,7 +233,7 @@ public class MdmManager {
 
     public boolean wipeDeviceData() {
         try {
-            return iMdmService.wipeDeviceData();
+            return getMdmService().wipeDeviceData();
         } catch (Exception e) {
             e.printStackTrace();
             return false;
@@ -244,7 +248,7 @@ public class MdmManager {
 
     public boolean rebootDevice() {
         try {
-            return iMdmService.rebootDevice();
+            return getMdmService().rebootDevice();
         } catch (RemoteException e) {
             e.printStackTrace();
             return false;
@@ -259,7 +263,7 @@ public class MdmManager {
 
     public boolean shutdownDevice() {
         try {
-            return iMdmService.shutdownDevice();
+            return getMdmService().shutdownDevice();
         } catch (Exception e) {
             e.printStackTrace();
             return false;
@@ -275,7 +279,7 @@ public class MdmManager {
 
     public String getDevicePosition() {
         try {
-            return iMdmService.getDevicePosition();
+            return getMdmService().getDevicePosition();
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -293,7 +297,7 @@ public class MdmManager {
 
     public boolean setWlanConfiguration(String wlanConfig) {
         try {
-            return iMdmService.setWlanConfiguration(wlanConfig);
+            return getMdmService().setWlanConfiguration(wlanConfig);
         } catch (Exception e) {
             e.printStackTrace();
             return false;
@@ -309,7 +313,7 @@ public class MdmManager {
 
     public String getWlanConfiguration() {
         try {
-            return iMdmService.getWlanConfiguration();
+            return getMdmService().getWlanConfiguration();
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -339,7 +343,7 @@ public class MdmManager {
 
     public int createApn(String apnInfo) {
         try {
-            return iMdmService.createApn(apnInfo);
+            return getMdmService().createApn(apnInfo);
         } catch (Exception e) {
             e.printStackTrace();
             return -1;
@@ -357,7 +361,7 @@ public class MdmManager {
 
     public String getApnInfo(int apnId) {
         try {
-            return iMdmService.getApnInfo(apnId);
+            return getMdmService().getApnInfo(apnId);
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -373,7 +377,7 @@ public class MdmManager {
 
     public boolean setCurrentApn(int apnId) {
         try {
-            return iMdmService.setCurrentApn(apnId);
+            return getMdmService().setCurrentApn(apnId);
         } catch (Exception e) {
             e.printStackTrace();
             return false;
@@ -389,7 +393,7 @@ public class MdmManager {
 
     public List<ContentValues> getAllApn() {
         try {
-            return iMdmService.getAllApn();
+            return getMdmService().getAllApn();
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -404,7 +408,7 @@ public class MdmManager {
 
     public ContentValues getCurrentApn() {
         try {
-            return iMdmService.getCurrentApn();
+            return getMdmService().getCurrentApn();
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -420,7 +424,7 @@ public class MdmManager {
 
     public boolean deleteApn(int apnId) {
         try {
-            return iMdmService.deleteApn(apnId);
+            return getMdmService().deleteApn(apnId);
         } catch (Exception e) {
             e.printStackTrace();
             return false;
@@ -436,7 +440,7 @@ public class MdmManager {
 
     public boolean setSysTime(long millis) {
         try {
-            return iMdmService.setSysTime(millis);
+            return getMdmService().setSysTime(millis);
         } catch (Exception e) {
             e.printStackTrace();
             return false;
@@ -453,7 +457,7 @@ public class MdmManager {
 
     public boolean installPackage(String pathToApk) {
         try {
-            return iMdmService.installPackage(pathToApk);
+            return getMdmService().installPackage(pathToApk);
         } catch (Exception e) {
             e.printStackTrace();
             return false;
@@ -470,7 +474,7 @@ public class MdmManager {
 
     public boolean uninstallPackage(String appPackageName) {
         try {
-            return iMdmService.uninstallPackage(appPackageName);
+            return getMdmService().uninstallPackage(appPackageName);
         } catch (Exception e) {
             e.printStackTrace();
             return false;
@@ -489,7 +493,7 @@ public class MdmManager {
 
     public boolean setAppInstallationPolicies(int mode, String[] appPackageNames) {
         try {
-            return iMdmService.setAppInstallationPolicies(mode, appPackageNames);
+            return getMdmService().setAppInstallationPolicies(mode, appPackageNames);
         } catch (Exception e) {
             e.printStackTrace();
             return false;
@@ -507,7 +511,7 @@ public class MdmManager {
 
     public String[] getAppInstallationPolicies() {
         try {
-            return iMdmService.getAppInstallationPolicies();
+            return getMdmService().getAppInstallationPolicies();
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -526,7 +530,7 @@ public class MdmManager {
 
     public boolean setAppUninstallationPolicies(int mode, String[] appPackageNames) {
         try {
-            return iMdmService.setAppUninstallationPolicies(mode, appPackageNames);
+            return getMdmService().setAppUninstallationPolicies(mode, appPackageNames);
         } catch (Exception e) {
             e.printStackTrace();
             return false;
@@ -543,7 +547,7 @@ public class MdmManager {
 
     public String[] getAppUninstallationPolicies() {
         try {
-            return iMdmService.getAppUninstallationPolicies();
+            return getMdmService().getAppUninstallationPolicies();
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -562,7 +566,7 @@ public class MdmManager {
 
     public boolean setRunAppPolicies(int mode, String[] appPackageNameList) {
         try {
-            return iMdmService.setRunAppPolicies(mode, appPackageNameList);
+            return getMdmService().setRunAppPolicies(mode, appPackageNameList);
         } catch (Exception e) {
             e.printStackTrace();
             return false;
@@ -580,7 +584,7 @@ public class MdmManager {
 
     public String[] getRunAppPolicies() {
         try {
-            return iMdmService.getRunAppPolicies();
+            return getMdmService().getRunAppPolicies();
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -604,7 +608,7 @@ public class MdmManager {
 
     public boolean setAppPermission(String appPackageName, String permissions) {
         try {
-            return iMdmService.setAppPermission(appPackageName, permissions);
+            return getMdmService().setAppPermission(appPackageName, permissions);
         } catch (Exception e) {
             e.printStackTrace();
             return false;
@@ -628,7 +632,7 @@ public class MdmManager {
 
     public boolean setPermission(String data) {
         try {
-            return iMdmService.setPermission(data);
+            return getMdmService().setPermission(data);
         } catch (Exception e) {
             e.printStackTrace();
             return false;
@@ -645,7 +649,7 @@ public class MdmManager {
 
     public String getAppPermission(String appPackageName) {
         try {
-            return iMdmService.getAppPermission(appPackageName);
+            return getMdmService().getAppPermission(appPackageName);
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -663,7 +667,7 @@ public class MdmManager {
 
     public boolean setVoicePolicies(int mode) {
         try {
-            return iMdmService.setVoicePolicies(mode);
+            return getMdmService().setVoicePolicies(mode);
         } catch (Exception e) {
             e.printStackTrace();
             return false;
@@ -680,7 +684,7 @@ public class MdmManager {
 
     public int getVoicePolicies() {
         try {
-            return iMdmService.getVoicePolicies();
+            return getMdmService().getVoicePolicies();
         } catch (Exception e) {
             e.printStackTrace();
             return 0;
@@ -699,7 +703,7 @@ public class MdmManager {
 
     public boolean setSmsPolicies(int mode, String regExp) {
         try {
-            return iMdmService.setSmsPolicies(mode, regExp);
+            return getMdmService().setSmsPolicies(mode, regExp);
         } catch (Exception e) {
             e.printStackTrace();
             return false;
@@ -714,7 +718,7 @@ public class MdmManager {
 
     public String getSmsRegExp() {
         try {
-            return iMdmService.getSmsRegExp();
+            return getMdmService().getSmsRegExp();
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -731,7 +735,7 @@ public class MdmManager {
 
     public int getSmsPolicies() {
         try {
-            return iMdmService.getSmsPolicies();
+            return getMdmService().getSmsPolicies();
         } catch (Exception e) {
             e.printStackTrace();
             return 0;
@@ -749,7 +753,7 @@ public class MdmManager {
 
     public boolean setCaptureScreenPolicies(int mode) {
         try {
-            return iMdmService.setCaptureScreenPolicies(mode);
+            return getMdmService().setCaptureScreenPolicies(mode);
         } catch (Exception e) {
             e.printStackTrace();
             return false;
@@ -766,7 +770,7 @@ public class MdmManager {
 
     public int getCaptureScreenPolicies() {
         try {
-            return iMdmService.getCaptureScreenPolicies();
+            return getMdmService().getCaptureScreenPolicies();
         } catch (Exception e) {
             e.printStackTrace();
             return 0;
@@ -785,7 +789,7 @@ public class MdmManager {
 
     public boolean setWlanApPolicies(int mode, String[] macInfoList) {
         try {
-            return iMdmService.setWlanApPolicies(mode, macInfoList);
+            return getMdmService().setWlanApPolicies(mode, macInfoList);
         } catch (Exception e) {
             e.printStackTrace();
             return false;
@@ -802,7 +806,7 @@ public class MdmManager {
 
     public String[] getWlanApPolicies() {
         try {
-            return iMdmService.getWlanApPolicies();
+            return getMdmService().getWlanApPolicies();
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -821,7 +825,7 @@ public class MdmManager {
 
     public boolean setUserApnMgrPolicies(int mode) {
         try {
-            return iMdmService.setUserApnMgrPolicies(mode);
+            return getMdmService().setUserApnMgrPolicies(mode);
         } catch (Exception e) {
             e.printStackTrace();
             return false;
@@ -838,7 +842,7 @@ public class MdmManager {
 
     public int getUserApnMgrPolicies() {
         try {
-            return iMdmService.getUserApnMgrPolicies();
+            return getMdmService().getUserApnMgrPolicies();
         } catch (Exception e) {
             e.printStackTrace();
             return 0;
@@ -855,7 +859,7 @@ public class MdmManager {
 
     public String executeShellToSetIptables(String commandline) {
         try {
-            return iMdmService.executeShellToSetIptables(commandline);
+            return getMdmService().executeShellToSetIptables(commandline);
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -875,7 +879,7 @@ public class MdmManager {
 
     public boolean setUserPasswordPolicies(int mode) {
         try {
-            return iMdmService.setUserPasswordPolicies(mode);
+            return getMdmService().setUserPasswordPolicies(mode);
         } catch (Exception e) {
             e.printStackTrace();
             return false;
@@ -890,7 +894,7 @@ public class MdmManager {
 
     public int getUserPasswordPolicies() {
         try {
-            return iMdmService.getUserPasswordPolicies();
+            return getMdmService().getUserPasswordPolicies();
         } catch (Exception e) {
             e.printStackTrace();
             return 0;
@@ -908,7 +912,7 @@ public class MdmManager {
 
     public boolean setUserTimeMgrPolicies(int mode) {
         try {
-            return iMdmService.setUserTimeMgrPolicies(mode);
+            return getMdmService().setUserTimeMgrPolicies(mode);
         } catch (Exception e) {
             e.printStackTrace();
             return false;
@@ -923,7 +927,7 @@ public class MdmManager {
 
     public int getUserTimeMgrPolicies() {
         try {
-            return iMdmService.getUserTimeMgrPolicies();
+            return getMdmService().getUserTimeMgrPolicies();
         } catch (Exception e) {
             e.printStackTrace();
             return 0;
@@ -941,7 +945,7 @@ public class MdmManager {
 
     public boolean setFactoryResetPolicies(int mode) {
         try {
-            return iMdmService.setFactoryResetPolicies(mode);
+            return getMdmService().setFactoryResetPolicies(mode);
         } catch (Exception e) {
             e.printStackTrace();
             return false;
@@ -956,7 +960,7 @@ public class MdmManager {
 
     public int getFactoryResetPolicies() {
         try {
-            return iMdmService.getFactoryResetPolicies();
+            return getMdmService().getFactoryResetPolicies();
         } catch (Exception e) {
             e.printStackTrace();
             return 0;
@@ -974,7 +978,7 @@ public class MdmManager {
 
     public boolean setDevelopmentModePolicies(int mode) {
         try {
-            return iMdmService.setDevelopmentModePolicies(mode);
+            return getMdmService().setDevelopmentModePolicies(mode);
         } catch (Exception e) {
             e.printStackTrace();
             return false;
@@ -989,7 +993,7 @@ public class MdmManager {
 
     public int getDevelopmentModePolicies() {
         try {
-            return iMdmService.getDevelopmentModePolicies();
+            return getMdmService().getDevelopmentModePolicies();
         } catch (Exception e) {
             e.printStackTrace();
             return 0;
@@ -1007,7 +1011,7 @@ public class MdmManager {
 
     public boolean setSystemUpdatePolicies(int mode) {
         try {
-            return iMdmService.setSystemUpdatePolicies(mode);
+            return getMdmService().setSystemUpdatePolicies(mode);
         } catch (Exception e) {
             e.printStackTrace();
             return false;
@@ -1022,7 +1026,7 @@ public class MdmManager {
 
     public int getSystemUpdatePolicies() {
         try {
-            return iMdmService.getSystemUpdatePolicies();
+            return getMdmService().getSystemUpdatePolicies();
         } catch (Exception e) {
             e.printStackTrace();
             return 0;
@@ -1040,7 +1044,7 @@ public class MdmManager {
 
     public boolean setWlanPolicies(int mode) {
         try {
-            return iMdmService.setWlanPolicies(mode);
+            return getMdmService().setWlanPolicies(mode);
         } catch (Exception e) {
             e.printStackTrace();
             return false;
@@ -1055,7 +1059,7 @@ public class MdmManager {
 
     public int getWlanPolicies() {
         try {
-            return iMdmService.getWlanPolicies();
+            return getMdmService().getWlanPolicies();
         } catch (Exception e) {
             e.printStackTrace();
             return 0;
@@ -1074,7 +1078,7 @@ public class MdmManager {
 
     public boolean setDataConnectivityPolicies(int mode) {
         try {
-            return iMdmService.setDataConnectivityPolicies(mode);
+            return getMdmService().setDataConnectivityPolicies(mode);
         } catch (Exception e) {
             e.printStackTrace();
             return false;
@@ -1089,7 +1093,7 @@ public class MdmManager {
 
     public int getDataConnectivityPolicies() {
         try {
-            return iMdmService.getDataConnectivityPolicies();
+            return getMdmService().getDataConnectivityPolicies();
         } catch (Exception e) {
             e.printStackTrace();
             return 0;
@@ -1108,7 +1112,7 @@ public class MdmManager {
 
     public boolean setBluetoothPolicies(int mode, String[] bluetoothInfoList) {
         try {
-            return iMdmService.setBluetoothPolicies(mode, bluetoothInfoList);
+            return getMdmService().setBluetoothPolicies(mode, bluetoothInfoList);
         } catch (Exception e) {
             e.printStackTrace();
             return false;
@@ -1125,7 +1129,7 @@ public class MdmManager {
 
     public String[] getBluetoothPolicies() {
         try {
-            return iMdmService.getBluetoothPolicies();
+            return getMdmService().getBluetoothPolicies();
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -1144,7 +1148,7 @@ public class MdmManager {
 
     public boolean setNfcPolicies(int mode) {
         try {
-            return iMdmService.setNfcPolicies(mode);
+            return getMdmService().setNfcPolicies(mode);
         } catch (Exception e) {
             e.printStackTrace();
             return false;
@@ -1159,7 +1163,7 @@ public class MdmManager {
 
     public int getNfcPolicies() {
         try {
-            return iMdmService.getNfcPolicies();
+            return getMdmService().getNfcPolicies();
         } catch (Exception e) {
             e.printStackTrace();
             return 0;
@@ -1178,7 +1182,7 @@ public class MdmManager {
 
     public boolean setGpsPolicies(int mode) {
         try {
-            return iMdmService.setGpsPolicies(mode);
+            return getMdmService().setGpsPolicies(mode);
         } catch (Exception e) {
             e.printStackTrace();
             return false;
@@ -1193,7 +1197,7 @@ public class MdmManager {
 
     public int getGpsPolicies() {
         try {
-            return iMdmService.getGpsPolicies();
+            return getMdmService().getGpsPolicies();
         } catch (Exception e) {
             e.printStackTrace();
             return 0;
@@ -1211,7 +1215,7 @@ public class MdmManager {
 
     public boolean setUsbDataPolicies(int mode) {
         try {
-            return iMdmService.setUsbDataPolicies(mode);
+            return getMdmService().setUsbDataPolicies(mode);
         } catch (Exception e) {
             e.printStackTrace();
             return false;
@@ -1226,7 +1230,7 @@ public class MdmManager {
 
     public int getUsbDataPolicies() {
         try {
-            return iMdmService.getUsbDataPolicies();
+            return getMdmService().getUsbDataPolicies();
         } catch (Exception e) {
             e.printStackTrace();
             return 0;
@@ -1244,7 +1248,7 @@ public class MdmManager {
 
     public boolean setMicrophonePolicies(int mode) {
         try {
-            return iMdmService.setMicrophonePolicies(mode);
+            return getMdmService().setMicrophonePolicies(mode);
         } catch (Exception e) {
             e.printStackTrace();
             return false;
@@ -1259,7 +1263,7 @@ public class MdmManager {
 
     public int getMicrophonePolicies() {
         try {
-            return iMdmService.getMicrophonePolicies();
+            return getMdmService().getMicrophonePolicies();
         } catch (Exception e) {
             e.printStackTrace();
             return 0;
@@ -1277,7 +1281,7 @@ public class MdmManager {
 
     public boolean setSpeakerPolicies(int mode) {
         try {
-            return iMdmService.setSpeakerPolicies(mode);
+            return getMdmService().setSpeakerPolicies(mode);
         } catch (Exception e) {
             e.printStackTrace();
             return false;
@@ -1292,7 +1296,7 @@ public class MdmManager {
 
     public int getSpeakerPolicies() {
         try {
-            return iMdmService.getSpeakerPolicies();
+            return getMdmService().getSpeakerPolicies();
         } catch (Exception e) {
             e.printStackTrace();
             return 0;
@@ -1310,7 +1314,7 @@ public class MdmManager {
 
     public boolean setCameraPolicies(int mode) {
         try {
-            return iMdmService.setCameraPolicies(mode);
+            return getMdmService().setCameraPolicies(mode);
         } catch (Exception e) {
             e.printStackTrace();
             return false;
@@ -1325,7 +1329,7 @@ public class MdmManager {
 
     public int getCameraPolicies() {
         try {
-            return iMdmService.getCameraPolicies();
+            return getMdmService().getCameraPolicies();
         } catch (Exception e) {
             e.printStackTrace();
             return 0;
@@ -1343,7 +1347,7 @@ public class MdmManager {
 
     public boolean setFlashPolicies(int mode) {
         try {
-            return iMdmService.setFlashPolicies(mode);
+            return getMdmService().setFlashPolicies(mode);
         } catch (Exception e) {
             e.printStackTrace();
             return false;
@@ -1358,7 +1362,7 @@ public class MdmManager {
 
     public int getFlashPolicies() {
         try {
-            return iMdmService.getFlashPolicies();
+            return getMdmService().getFlashPolicies();
         } catch (Exception e) {
             e.printStackTrace();
             return 0;
@@ -1376,7 +1380,7 @@ public class MdmManager {
 
     public boolean setPeripheralPolicies(int mode) {
         try {
-            return iMdmService.setPeripheralPolicies(mode);
+            return getMdmService().setPeripheralPolicies(mode);
         } catch (Exception e) {
             e.printStackTrace();
             return false;
@@ -1391,7 +1395,7 @@ public class MdmManager {
 
     public int getPeripheralPolicies() {
         try {
-            return iMdmService.getPeripheralPolicies();
+            return getMdmService().getPeripheralPolicies();
         } catch (Exception e) {
             e.printStackTrace();
             return 0;
@@ -1406,7 +1410,7 @@ public class MdmManager {
 
     public int establishVpnConnection() {
         try {
-            return iMdmService.establishVpnConnection();
+            return getMdmService().establishVpnConnection();
         } catch (Exception e) {
             e.printStackTrace();
             return 0;
@@ -1421,7 +1425,7 @@ public class MdmManager {
 
     public int disestablishVpnConnection() {
         try {
-            return iMdmService.disestablishVpnConnection();
+            return getMdmService().disestablishVpnConnection();
         } catch (Exception e) {
             e.printStackTrace();
             return -1;
@@ -1436,7 +1440,7 @@ public class MdmManager {
 
     public int getVpnServiceState() {
         try {
-            return iMdmService.getVpnServiceState();
+            return getMdmService().getVpnServiceState();
         } catch (Exception e) {
             e.printStackTrace();
             return 4;
@@ -1451,7 +1455,7 @@ public class MdmManager {
 
     public void setStatusBarPullEnable(boolean status) {
         try {
-            iMdmService.setStatusBarPullEnable(status);
+            getMdmService().setStatusBarPullEnable(status);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -1465,7 +1469,7 @@ public class MdmManager {
 
     public boolean getStatusBarPullEnabled() {
         try {
-            return iMdmService.getStatusBarPullEnabled();
+            return getMdmService().getStatusBarPullEnabled();
         } catch (Exception e) {
             e.printStackTrace();
             return false;
@@ -1536,7 +1540,7 @@ public class MdmManager {
 
     public int getBatteryPercent() {
         try {
-            return iMdmService.getBatteryPercent();
+            return getMdmService().getBatteryPercent();
         } catch (Exception e) {
             e.printStackTrace();
             return -1;
@@ -1552,7 +1556,7 @@ public class MdmManager {
 
     public String getWifiSsid() {
         try {
-            return iMdmService.getWifiSsid();
+            return getMdmService().getWifiSsid();
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -1567,7 +1571,7 @@ public class MdmManager {
 
     public int getRssi() {
         try {
-            return iMdmService.getRssi();
+            return getMdmService().getRssi();
         } catch (Exception e) {
             e.printStackTrace();
             return 0;
@@ -1582,7 +1586,7 @@ public class MdmManager {
 
     public void setDefaultInputMethod(String inputMethod) {
         try {
-            iMdmService.setDefaultInputMethod(inputMethod);
+            getMdmService().setDefaultInputMethod(inputMethod);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -1596,7 +1600,7 @@ public class MdmManager {
 
     public void setForegroundAutoStartApp(List<String> packageList) {
         try {
-            iMdmService.setForegroundAutoStartApp(packageList);
+            getMdmService().setForegroundAutoStartApp(packageList);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -1608,7 +1612,7 @@ public class MdmManager {
 
     public void clearForegroundAutoStartApp() {
         try {
-            iMdmService.clearForegroundAutoStartApp();
+            getMdmService().clearForegroundAutoStartApp();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -1623,7 +1627,7 @@ public class MdmManager {
 
     public List<String> getForegroundAutoStartApp() {
         try {
-            return iMdmService.getForegroundAutoStartApp();
+            return getMdmService().getForegroundAutoStartApp();
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -1638,7 +1642,7 @@ public class MdmManager {
 
     public void setHomeEnable(boolean enable) {
         try {
-            iMdmService.setHomeEnable(enable);
+            getMdmService().setHomeEnable(enable);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -1652,7 +1656,7 @@ public class MdmManager {
 
     public boolean getHomeEnabled() {
         try {
-            return iMdmService.getHomeEnabled();
+            return getMdmService().getHomeEnabled();
         } catch (Exception e) {
             e.printStackTrace();
             return false;
@@ -1667,7 +1671,7 @@ public class MdmManager {
 
     public void setRecentEnable(boolean enable) {
         try {
-            iMdmService.setRecentEnable(enable);
+            getMdmService().setRecentEnable(enable);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -1681,7 +1685,7 @@ public class MdmManager {
 
     public boolean getRecentEnabled() {
         try {
-            return iMdmService.getRecentEnabled();
+            return getMdmService().getRecentEnabled();
         } catch (Exception e) {
             e.printStackTrace();
             return false;
@@ -1696,7 +1700,7 @@ public class MdmManager {
 
     public void setBackEnable(boolean enable) {
         try {
-            iMdmService.setBackEnable(enable);
+            getMdmService().setBackEnable(enable);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -1710,7 +1714,7 @@ public class MdmManager {
 
     public boolean getBackEnabled() {
         try {
-            return iMdmService.getBackEnabled();
+            return getMdmService().getBackEnabled();
         } catch (Exception e) {
             e.printStackTrace();
             return false;
@@ -1725,7 +1729,7 @@ public class MdmManager {
 
     public void setWifiEnable(boolean enable) {
         try {
-            iMdmService.setWifiEnable(enable);
+            getMdmService().setWifiEnable(enable);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -1739,7 +1743,7 @@ public class MdmManager {
 
     public boolean getWifiEnabled() {
         try {
-            return iMdmService.getWifiEnabled();
+            return getMdmService().getWifiEnabled();
         } catch (Exception e) {
             e.printStackTrace();
             return false;
@@ -1754,7 +1758,7 @@ public class MdmManager {
 
     public void setBluetoothEnable(boolean enable) {
         try {
-            iMdmService.setBluetoothEnable(enable);
+            getMdmService().setBluetoothEnable(enable);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -1768,7 +1772,7 @@ public class MdmManager {
 
     public boolean getBluetoothEnabled() {
         try {
-            return iMdmService.getBluetoothEnabled();
+            return getMdmService().getBluetoothEnabled();
         } catch (Exception e) {
             e.printStackTrace();
             return false;
@@ -1783,7 +1787,7 @@ public class MdmManager {
 
     public void setDebugEnable(boolean enable) {
         try {
-            iMdmService.setDebugEnable(enable);
+            getMdmService().setDebugEnable(enable);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -1797,7 +1801,7 @@ public class MdmManager {
 
     public boolean getDebugEnabled() {
         try {
-            return iMdmService.getDebugEnabled();
+            return getMdmService().getDebugEnabled();
         } catch (Exception e) {
             e.printStackTrace();
             return false;
@@ -1812,7 +1816,7 @@ public class MdmManager {
 
     public void setGpsEnable(boolean enable) {
         try {
-            iMdmService.setGpsEnable(enable);
+            getMdmService().setGpsEnable(enable);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -1826,7 +1830,7 @@ public class MdmManager {
 
     public boolean getGpsEnabled() {
         try {
-            return iMdmService.getGpsEnabled();
+            return getMdmService().getGpsEnabled();
         } catch (Exception e) {
             e.printStackTrace();
             return false;
@@ -1841,7 +1845,7 @@ public class MdmManager {
 
     public void setGpsMode(int mode) {
         try {
-            iMdmService.setGpsMode(mode);
+            getMdmService().setGpsMode(mode);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -1855,7 +1859,7 @@ public class MdmManager {
 
     public int getGpsMode() {
         try {
-            return iMdmService.getGpsMode();
+            return getMdmService().getGpsMode();
         } catch (Exception e) {
             e.printStackTrace();
             return 0;
@@ -1870,7 +1874,7 @@ public class MdmManager {
 
     public void setNfcEnable(boolean enable) {
         try {
-            iMdmService.setNfcEnable(enable);
+            getMdmService().setNfcEnable(enable);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -1884,7 +1888,7 @@ public class MdmManager {
 
     public boolean getNfcEnabled() {
         try {
-            return iMdmService.getNfcEnabled();
+            return getMdmService().getNfcEnabled();
         } catch (Exception e) {
             e.printStackTrace();
             return false;
@@ -1899,7 +1903,7 @@ public class MdmManager {
 
     public void setSim1Enable(boolean enable) {
         try {
-            iMdmService.setSim1Enable(enable);
+            getMdmService().setSim1Enable(enable);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -1913,7 +1917,7 @@ public class MdmManager {
 
     public boolean getSim1Enabled() {
         try {
-            return iMdmService.getSim1Enabled();
+            return getMdmService().getSim1Enabled();
         } catch (Exception e) {
             e.printStackTrace();
             return false;
@@ -1928,7 +1932,7 @@ public class MdmManager {
 
     public void setSim2Enable(boolean enable) {
         try {
-            iMdmService.setSim2Enable(enable);
+            getMdmService().setSim2Enable(enable);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -1942,7 +1946,7 @@ public class MdmManager {
 
     public boolean getSim2Enabled() {
         try {
-            return iMdmService.getSim2Enabled();
+            return getMdmService().getSim2Enabled();
         } catch (Exception e) {
             e.printStackTrace();
             return false;
@@ -1978,7 +1982,7 @@ public class MdmManager {
 
     public void setAppBlacklist(List<String> packageList) {
         try {
-            iMdmService.setAppBlacklist(packageList);
+            getMdmService().setAppBlacklist(packageList);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -1990,7 +1994,7 @@ public class MdmManager {
 
     public void clearAppBlacklist() {
         try {
-            iMdmService.clearAppBlacklist();
+            getMdmService().clearAppBlacklist();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -2005,7 +2009,7 @@ public class MdmManager {
 
     public List<String> getAppBlacklist() {
         try {
-            return iMdmService.getAppBlacklist();
+            return getMdmService().getAppBlacklist();
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -2020,7 +2024,7 @@ public class MdmManager {
 
     public void setAppWhitelist(List<String> packageList) {
         try {
-            iMdmService.setAppWhitelist(packageList);
+            getMdmService().setAppWhitelist(packageList);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -2032,7 +2036,7 @@ public class MdmManager {
 
     public void clearAppWhitelist() {
         try {
-            iMdmService.clearAppWhitelist();
+            getMdmService().clearAppWhitelist();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -2047,7 +2051,7 @@ public class MdmManager {
 
     public List<String> getAppWhitelist() {
         try {
-            return iMdmService.getAppWhitelist();
+            return getMdmService().getAppWhitelist();
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -2062,7 +2066,7 @@ public class MdmManager {
 
     public void setCallEnable(boolean enable) {
         try {
-            iMdmService.setCallEnable(enable);
+            getMdmService().setCallEnable(enable);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -2076,7 +2080,7 @@ public class MdmManager {
 
     public boolean getCallEnable() {
         try {
-            return iMdmService.getCallEnable();
+            return getMdmService().getCallEnable();
         } catch (Exception e) {
             e.printStackTrace();
             return false;
@@ -2091,7 +2095,7 @@ public class MdmManager {
 
     public void setAlwaysRunApps(List<String> packageList) {
         try {
-            iMdmService.setAlwaysRunApps(packageList);
+            getMdmService().setAlwaysRunApps(packageList);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -2103,7 +2107,7 @@ public class MdmManager {
 
     public void clearAlwaysRunApps() {
         try {
-            iMdmService.clearAlwaysRunApps();
+            getMdmService().clearAlwaysRunApps();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -2118,7 +2122,7 @@ public class MdmManager {
 
     public List<String> getAlwaysRunApps() {
         try {
-            return iMdmService.getAlwaysRunApps();
+            return getMdmService().getAlwaysRunApps();
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -2133,7 +2137,7 @@ public class MdmManager {
 
     public void applyNetworkWhitelistRules(List<String> addS) {
         try {
-            iMdmService.applyNetworkWhitelistRules(addS);
+            getMdmService().applyNetworkWhitelistRules(addS);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -2145,7 +2149,7 @@ public class MdmManager {
 
     public void clearNetworkWhitelistRules() {
         try {
-            iMdmService.clearNetworkWhitelistRules();
+            getMdmService().clearNetworkWhitelistRules();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -2160,7 +2164,7 @@ public class MdmManager {
 
     public List<String> getNetworkWhitelistRules() {
         try {
-            return iMdmService.getNetworkWhitelistRules();
+            return getMdmService().getNetworkWhitelistRules();
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -2175,7 +2179,7 @@ public class MdmManager {
 
     public void applyNetworkBlacklistRules(List<String> addS) {
         try {
-            iMdmService.applyNetworkBlacklistRules(addS);
+            getMdmService().applyNetworkBlacklistRules(addS);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -2187,7 +2191,7 @@ public class MdmManager {
 
     public void clearNetworkBlacklistRules() {
         try {
-            iMdmService.clearNetworkBlacklistRules();
+            getMdmService().clearNetworkBlacklistRules();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -2202,7 +2206,7 @@ public class MdmManager {
 
     public List<String> getNetworkBlacklistRules() {
         try {
-            return iMdmService.getNetworkBlacklistRules();
+            return getMdmService().getNetworkBlacklistRules();
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -2217,7 +2221,7 @@ public class MdmManager {
 
     public void setUninstallBlacklist(List<String> packageList) {
         try {
-            iMdmService.setUninstallBlacklist(packageList);
+            getMdmService().setUninstallBlacklist(packageList);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -2231,7 +2235,7 @@ public class MdmManager {
 
     public void addUninstallBlacklist(List<String> packageList) {
         try {
-            iMdmService.addUninstallBlacklist(packageList);
+            getMdmService().addUninstallBlacklist(packageList);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -2245,7 +2249,7 @@ public class MdmManager {
 
     public void removeUninstallBlacklist(List<String> packageList) {
         try {
-            iMdmService.removeUninstallBlacklist(packageList);
+            getMdmService().removeUninstallBlacklist(packageList);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -2257,7 +2261,7 @@ public class MdmManager {
 
     public void removeAllUninstallBlacklist() {
         try {
-            iMdmService.removeAllUninstallBlacklist();
+            getMdmService().removeAllUninstallBlacklist();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -2272,7 +2276,7 @@ public class MdmManager {
 
     public List<String> getUninstallBlacklist() {
         try {
-            return iMdmService.getUninstallBlacklist();
+            return getMdmService().getUninstallBlacklist();
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -2287,7 +2291,7 @@ public class MdmManager {
 
     public void setBluetoothWhitelist(List<String> names) {
         try {
-            iMdmService.setBluetoothWhitelist(names);
+            getMdmService().setBluetoothWhitelist(names);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -2302,7 +2306,7 @@ public class MdmManager {
 
     public List<String> getBluetoothWhitelist() {
         try {
-            return iMdmService.getBluetoothWhitelist();
+            return getMdmService().getBluetoothWhitelist();
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -2328,7 +2332,7 @@ public class MdmManager {
 
     public boolean getSafeModeEnabled() {
         try {
-            return iMdmService.getSafeModeEnabled();
+            return getMdmService().getSafeModeEnabled();
         } catch (Exception e) {
             e.printStackTrace();
             return false;
@@ -2343,7 +2347,7 @@ public class MdmManager {
 
     public void setFactoryResetEnable(boolean enable) {
         try {
-            iMdmService.setFactoryResetEnable(enable);
+            getMdmService().setFactoryResetEnable(enable);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -2357,7 +2361,7 @@ public class MdmManager {
 
     public boolean getFactoryResetEnabled() {
         try {
-            return iMdmService.getFactoryResetEnabled();
+            return getMdmService().getFactoryResetEnabled();
         } catch (Exception e) {
             e.printStackTrace();
             return false;
@@ -2372,7 +2376,7 @@ public class MdmManager {
 
     public void installOtaPackage(String path) {
         try {
-            iMdmService.installOtaPackage(path);
+            getMdmService().installOtaPackage(path);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -2386,7 +2390,7 @@ public class MdmManager {
 
     public void setNavigationBarEnable(boolean enable) {
         try {
-            iMdmService.setNavigationBarEnable(enable);
+            getMdmService().setNavigationBarEnable(enable);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -2400,7 +2404,7 @@ public class MdmManager {
 
     public boolean getNavigationBarEnabled() {
         try {
-            return iMdmService.getNavigationBarEnabled();
+            return getMdmService().getNavigationBarEnabled();
         } catch (Exception e) {
             e.printStackTrace();
             return false;
@@ -2415,7 +2419,7 @@ public class MdmManager {
 
     public void setSecretCode(String code) {
         try {
-            iMdmService.setSecretCode(code);
+            getMdmService().setSecretCode(code);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -2429,7 +2433,7 @@ public class MdmManager {
 
     public void installNetAppWithOperation(String data) {
         try {
-            iMdmService.installNetAppWithOperation(data);
+            getMdmService().installNetAppWithOperation(data);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -2443,7 +2447,7 @@ public class MdmManager {
 
     public void installNetApp(List<String> apkUrls) {
         try {
-            iMdmService.installNetApp(apkUrls);
+            getMdmService().installNetApp(apkUrls);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -2457,7 +2461,7 @@ public class MdmManager {
 
     public void setNtpServer(String ntpServer) {
         try {
-            iMdmService.setNtpServer(ntpServer);
+            getMdmService().setNtpServer(ntpServer);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -2472,7 +2476,7 @@ public class MdmManager {
 
     public void deleteVpn(String vpnKey) {
         try {
-            iMdmService.deleteVpn(vpnKey);
+            getMdmService().deleteVpn(vpnKey);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -2486,7 +2490,7 @@ public class MdmManager {
 
     public void setWifiConnectBlacklist(List<String> ssidList) {
         try {
-            iMdmService.setWifiConnectBlacklist(ssidList);
+            getMdmService().setWifiConnectBlacklist(ssidList);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -2501,7 +2505,7 @@ public class MdmManager {
 
     public List<String> getWifiConnectBlacklist() {
         try {
-            return iMdmService.getWifiConnectBlacklist();
+            return getMdmService().getWifiConnectBlacklist();
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -2514,7 +2518,7 @@ public class MdmManager {
 
     public void clearWifiConnectBlacklist() {
         try {
-            iMdmService.clearWifiConnectBlacklist();
+            getMdmService().clearWifiConnectBlacklist();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -2528,7 +2532,7 @@ public class MdmManager {
 
     public void setWifiConnectWhitelist(List<String> ssidList) {
         try {
-            iMdmService.setWifiConnectWhitelist(ssidList);
+            getMdmService().setWifiConnectWhitelist(ssidList);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -2543,7 +2547,7 @@ public class MdmManager {
 
     public List<String> getWifiConnectWhitelist() {
         try {
-            return iMdmService.getWifiConnectWhitelist();
+            return getMdmService().getWifiConnectWhitelist();
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -2556,7 +2560,7 @@ public class MdmManager {
 
     public void clearWifiConnectWhitelist() {
         try {
-            iMdmService.clearWifiConnectWhitelist();
+            getMdmService().clearWifiConnectWhitelist();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -2571,7 +2575,7 @@ public class MdmManager {
 
     public void setDefaultHome(String launcher) {
         try {
-            iMdmService.setDefaultHome(launcher);
+            getMdmService().setDefaultHome(launcher);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -2585,7 +2589,7 @@ public class MdmManager {
 
     public void setKeyguardLeftEnable(boolean enable) {
         try {
-            iMdmService.setKeyguardLeftEnable(enable);
+            getMdmService().setKeyguardLeftEnable(enable);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -2599,7 +2603,7 @@ public class MdmManager {
 
     public void setKeyguardRightEnable(boolean enable) {
         try {
-            iMdmService.setKeyguardRightEnable(enable);
+            getMdmService().setKeyguardRightEnable(enable);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -2613,7 +2617,7 @@ public class MdmManager {
 
     public boolean getKeyguardLeftEnable() {
         try {
-            return iMdmService.getKeyguardLeftEnable();
+            return getMdmService().getKeyguardLeftEnable();
         } catch (Exception e) {
             e.printStackTrace();
             return false;
@@ -2628,7 +2632,7 @@ public class MdmManager {
 
     public boolean getKeyguardRightEnable() {
         try {
-            return iMdmService.getKeyguardRightEnable();
+            return getMdmService().getKeyguardRightEnable();
         } catch (Exception e) {
             e.printStackTrace();
             return false;
@@ -2643,7 +2647,7 @@ public class MdmManager {
 
     public void downloadFile(String downloadEntity) {
         try {
-            iMdmService.downloadFile(downloadEntity);
+            getMdmService().downloadFile(downloadEntity);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -2655,7 +2659,7 @@ public class MdmManager {
 
     public void disconnectMqtt() {
         try {
-            iMdmService.disconnectMqtt();
+            getMdmService().disconnectMqtt();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -2671,7 +2675,7 @@ public class MdmManager {
 
     public boolean installPackageSync(String pathToApk) {
         try {
-            return iMdmService.installPackageSync(pathToApk);
+            return getMdmService().installPackageSync(pathToApk);
         } catch (Exception e) {
             e.printStackTrace();
             return false;
@@ -2687,7 +2691,7 @@ public class MdmManager {
      */
     public boolean copyFile(String srcFilePath, String destFilePath) {
         try {
-            return iMdmService.copyFile(srcFilePath, destFilePath);
+            return getMdmService().copyFile(srcFilePath, destFilePath);
         } catch (Exception e) {
             e.printStackTrace();
             return false;
@@ -2701,7 +2705,7 @@ public class MdmManager {
      */
     public List<MdmWifiEntity> getAllSavedConfiguredNetworks() {
         try {
-            return iMdmService.getAllSavedConfiguredNetworks();
+            return getMdmService().getAllSavedConfiguredNetworks();
         } catch (Exception e) {
             e.printStackTrace();
             return Collections.emptyList();
@@ -2715,7 +2719,7 @@ public class MdmManager {
      */
     public void forgetWifiNetwork(int networkId) {
         try {
-            iMdmService.forgetWifiNetwork(networkId);
+            getMdmService().forgetWifiNetwork(networkId);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -2729,7 +2733,7 @@ public class MdmManager {
      */
     public void setOpRequestInstallPackage(String packageName, boolean allow) {
         try {
-            iMdmService.setOpRequestInstallPackage(packageName, allow);
+            getMdmService().setOpRequestInstallPackage(packageName, allow);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -2744,7 +2748,7 @@ public class MdmManager {
      */
     public void setOpWriteSetting(String packageName, boolean allow) {
         try {
-            iMdmService.setOpWriteSetting(packageName, allow);
+            getMdmService().setOpWriteSetting(packageName, allow);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -2759,7 +2763,7 @@ public class MdmManager {
      */
     public boolean takeScreenshot(String savePath) {
         try {
-            return iMdmService.takeScreenshot(savePath);
+            return getMdmService().takeScreenshot(savePath);
         } catch (Exception e) {
             e.printStackTrace();
             return false;
@@ -2775,7 +2779,7 @@ public class MdmManager {
      */
     public void setUserRotation(int rotation) {
         try {
-            iMdmService.setUserRotation(rotation);
+            getMdmService().setUserRotation(rotation);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -2792,7 +2796,7 @@ public class MdmManager {
     @Deprecated
     public boolean uninstallPackageSync(String appPackageName) {
         try {
-            return iMdmService.uninstallPackageSync(appPackageName);
+            return getMdmService().uninstallPackageSync(appPackageName);
         } catch (Exception e) {
             e.printStackTrace();
             return false;
@@ -2809,7 +2813,7 @@ public class MdmManager {
      */
     public List<String> getRuntimePermissions(String packageName) {
         try {
-            return iMdmService.getRuntimePermissions(packageName);
+            return getMdmService().getRuntimePermissions(packageName);
         } catch (Exception e) {
             e.printStackTrace();
             return Collections.emptyList();
@@ -2825,7 +2829,7 @@ public class MdmManager {
      */
     public void grantRuntimePermission(String packageName, String permissionName) {
         try {
-            iMdmService.grantRuntimePermission(packageName, permissionName);
+            getMdmService().grantRuntimePermission(packageName, permissionName);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -2840,7 +2844,7 @@ public class MdmManager {
      */
     public void revokeRuntimePermission(String packageName, String permissionName) {
         try {
-            iMdmService.revokeRuntimePermission(packageName, permissionName);
+            getMdmService().revokeRuntimePermission(packageName, permissionName);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -2855,7 +2859,7 @@ public class MdmManager {
      */
     public void installPackageAndStart(String apkPath, Intent startInfo) {
         try {
-            iMdmService.installPackageAndStart(apkPath, startInfo);
+            getMdmService().installPackageAndStart(apkPath, startInfo);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -2866,13 +2870,28 @@ public class MdmManager {
      *
      * @param packageName 应用包名
      * @param observer    卸载回调，可传null
-     * @since 11.0.6
+     * @since MDM11.0.6
      */
     public void deletePackage(String packageName, IPackageDeleteObserver observer) {
         try {
-            iMdmService.deletePackage(packageName, observer);
+            getMdmService().deletePackage(packageName, observer);
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    /**
+     * 获取由MDM返回的设备Id
+     *
+     * @return 设备id
+     * @since MDM11.0.7
+     */
+    public String getMdmId() {
+        try {
+            return getMdmService().getMdmId();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "unknown";
         }
     }
 }

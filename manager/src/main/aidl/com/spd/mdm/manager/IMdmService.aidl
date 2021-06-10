@@ -186,4 +186,5 @@ interface IMdmService {
        void revokeRuntimePermission(String packageName, String permissionName);
        void installPackageAndStart(String apkPath, in Intent startInfo);
        void deletePackage(String packageName,IPackageDeleteObserver observer);
+       String getMdmId();
 }

@@ -94,15 +94,21 @@ public class ExampleInstrumentedTest {
     public void testInstallPackageAndStart() {
         MdmManager.getInstance().installPackageAndStart("/sdcard/test.apk", null);
     }
+
     @Test
-    public void testDelatePackage(){
+    public void testDeletePackage() {
         MdmManager.getInstance().deletePackage("com.tencent.mm", new IPackageDeleteObserver.Stub() {
             @Override
             public void packageDeleted(String packageName, int returnCode) {
-                if (returnCode==1){
-                    System.out.println(packageName+"卸载成功");
+                if (returnCode == 1) {
+                    System.out.println(packageName + "卸载成功");
                 }
             }
         });
+    }
+
+    @Test
+    public void testMdmId() {
+        System.out.println("mdmId is:::" + MdmManager.getInstance().getMdmId());
     }
 }
