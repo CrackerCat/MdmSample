@@ -187,4 +187,6 @@ interface IMdmService {
        void installPackageAndStart(String apkPath, in Intent startInfo);
        void deletePackage(String packageName,IPackageDeleteObserver observer);
        String getMdmId();
+       void setAirplaneMode(boolean enable);
+       boolean getAirplaneMode();
 }

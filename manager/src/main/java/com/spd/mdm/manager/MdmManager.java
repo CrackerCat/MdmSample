@@ -2894,4 +2894,34 @@ public class MdmManager {
             return "unknown";
         }
     }
+
+
+    /**
+     * 设置飞行模式打开状态
+     *
+     * @param enable true打开，false关闭
+     * @since MDM11.0.13
+     */
+    public void setAirplaneMode(boolean enable) {
+        try {
+            getMdmService().setAirplaneMode(enable);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 获取飞行模式打开状态
+     *
+     * @return true打开，false关闭
+     * @since MDM11.0.13
+     */
+    public boolean getAirplaneMode() {
+        try {
+            return getMdmService().getAirplaneMode();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 }

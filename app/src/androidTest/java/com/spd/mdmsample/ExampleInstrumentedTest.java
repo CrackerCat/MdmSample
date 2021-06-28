@@ -2,7 +2,6 @@ package com.spd.mdmsample;
 
 import android.Manifest;
 import android.content.Context;
-import android.os.RemoteException;
 import android.view.Surface;
 
 import androidx.test.platform.app.InstrumentationRegistry;
@@ -110,5 +109,10 @@ public class ExampleInstrumentedTest {
     @Test
     public void testMdmId() {
         System.out.println("mdmId is:::" + MdmManager.getInstance().getMdmId());
+    }
+
+    @Test
+    public void testAirplaneMode() {
+        MdmManager.getInstance().setAirplaneMode(!MdmManager.getInstance().getAirplaneMode());
     }
 }

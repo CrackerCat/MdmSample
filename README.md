@@ -123,6 +123,8 @@ api支持6.0以上系统，以MDM3.3.0及以上版本说明
 | installPackageAndStart        | 安装应用并启动              | √          | √        | √         | MDM3.3.16加入|
 | deletePackage                 | 卸载应用带回调              | √          | √        | √         | MDM11.0.6加入|
 | getMdmId                      | 获取由MDM返回的设备Id        | √          | √        | √         | MDM11.0.7加入|
+| setAirplaneMode               | 设置飞行模式开关状态         | √          | √        | √         | MDM11.0.13加入|
+| getAirplaneMode               | 获取飞行模式开关状态         | √          | √        | √         | MDM11.0.13加入|
 
 
 
