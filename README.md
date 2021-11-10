@@ -125,7 +125,20 @@ api支持6.0以上系统，以MDM3.3.0及以上版本说明
 | getMdmId                      | 获取由MDM返回的设备Id        | √          | √        | √         | MDM11.0.7加入|
 | setAirplaneMode               | 设置飞行模式开关状态         | √          | √        | √         | MDM11.0.13加入|
 | getAirplaneMode               | 获取飞行模式开关状态         | √          | √        | √         | MDM11.0.13加入|
-
+| setWifiConnectBlacklist       | 设置WIFI连接黑名单          | x          | 需系统适配  | √         | MDM11.0.17加入|
+| setWifiConnectWhitelist       | 设置WIFI连接白名单          | x          | 需系统适配  | √         | MDM11.0.17加入|
+| applyNetworkWhitelistRules    | 设置网络连接白名单          | √          | √         | √         | MDM11.0.17加入|
+| clearNetworkWhitelistRules    | 清空网络连接白名单          | √          | √         | √         | MDM11.0.17加入|
+| getNetworkWhitelistRules      | 获取网络连接白名单          | √          | √         | √         | MDM11.0.17加入|
+| setBootAnimation              | 设置开机动画               | 需系统适配    | 需系统适配 | 需系统适配   | MDM11.0.18加入|
+| setKioskApp                   | 设置霸屏应用               | √          | √ | √   | MDM11.0.16加入|
+| getKioskApp                   | 获取霸屏应用               | √          | √ | √   | MDM11.0.16加入|
+| setWifiMode                   | 设置WIFI打开状态           | √          | √ | √   | MDM11.0.18加入|
+| killApplicationProcess        | 结束进程                  | √          | √ | √   | MDM12.0.2加入|
+| startTethering                | 打开wifi热点              | √          | √ | √   | MDM12.0.3加入|
+| stopTethering                 | 关闭wifi热点              | √          | √ | √   | MDM12.0.3加入|
+| getSoftApConfiguration        | 获取wifi热点信息           | √          | √ | √   | MDM12.0.3加入|
+| connect2Wifi                  | 连接到wifi                | √          | √ | √   | MDM12.0.3加入|
 
 
 

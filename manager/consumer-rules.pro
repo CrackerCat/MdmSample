@@ -1,3 +1,3 @@
--keep class com.spd.mdm.manager.** {
+-keep class com.spd.mdm.** {
     *;
 }

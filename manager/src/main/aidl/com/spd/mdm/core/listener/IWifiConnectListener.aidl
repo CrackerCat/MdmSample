@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021, Reginer
+ * Copyright (c) 2020, Reginer
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -29,13 +29,24 @@
  *
  *
  */
-package com.spd.mdm.manager;
+package com.spd.mdm.core.listener;
 
 /**
- * @author :Reginer  2021/6/7 13:30.
+ * @author :Reginer  2020/10/22 16:18.
  * 联系方式:QQ:282921012
- * 功能描述:应用卸载回调
+ * 功能描述:连接wifi回调
  */
-interface IPackageDeleteObserver {
-  oneway  void packageDeleted(in String packageName, in int returnCode);
+interface IWifiConnectListener {
+    /**
+     * The operation succeeded.
+     */
+    void onSuccess();
+
+    /**
+     * The operation failed.
+     *
+     * @param reason The reason for failure depends on the operation.
+     * @link android.net.wifi.WifiManager.ActionListenerFailureReason
+     */
+    void onFailure(int reason);
 }

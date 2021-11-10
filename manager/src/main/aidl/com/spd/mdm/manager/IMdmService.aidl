@@ -5,6 +5,9 @@ import android.content.ContentValues;
 import android.content.Intent;
 import com.spd.mdm.manager.MdmWifiEntity;
 import com.spd.mdm.manager.IPackageDeleteObserver;
+import com.spd.mdm.core.listener.IStartTetheringCallback;
+import com.spd.mdm.core.listener.IWifiConnectListener;
+import com.spd.mdm.core.entity.WifiEntity;
 
 interface IMdmService {
        String[] listIccid();
@@ -189,4 +192,13 @@ interface IMdmService {
        String getMdmId();
        void setAirplaneMode(boolean enable);
        boolean getAirplaneMode();
+       boolean setBootAnimation(String filePath);
+       void setKioskApp(String packageName);
+       String getKioskApp();
+       void setWifiMode(boolean enable);
+       void killApplicationProcess(String packageName);
+       void startTethering(IStartTetheringCallback iStartTetheringCallback);
+       void stopTethering();
+       WifiEntity getSoftApConfiguration();
+       void connect2Wifi(in WifiEntity apEntity,IWifiConnectListener iWifiConnectListener);
 }

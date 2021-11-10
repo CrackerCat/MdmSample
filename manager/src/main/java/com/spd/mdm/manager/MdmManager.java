@@ -11,6 +11,10 @@ import android.os.ServiceManager;
 import android.view.Surface;
 
 
+import com.spd.mdm.core.entity.WifiEntity;
+import com.spd.mdm.core.listener.IStartTetheringCallback;
+import com.spd.mdm.core.listener.IWifiConnectListener;
+
 import java.util.Collections;
 import java.util.List;
 
@@ -37,7 +41,7 @@ public class MdmManager {
             }
             IMdmService mdmSpdService = IMdmService.Stub.asInterface(ServiceManager.getService("mdmSpdService"));
             if (mdmSpdService == null) {
-                throw new RuntimeException("请安装小拓之家3.3.0或以上版本");
+                throw new RuntimeException("请安装小拓之家12.0.3或以上版本");
             }
             return new MdmManager();
         }
@@ -1037,8 +1041,9 @@ public class MdmManager {
      * WLAN管控
      *
      * @param mode 功能模式
-     *             0：禁止终端使用无线网络；
-     *             1：1：允许终端使用无线网络(ga系统只允许终端进行无线网络指纹扫描)
+     *             0：禁止终端使用无线网络
+     *             1：允许终端使用无线网络
+     *             2.不管控
      * @return 成功返回true；失败返回false
      */
 
@@ -2687,7 +2692,7 @@ public class MdmManager {
      *
      * @param srcFilePath  源文件
      * @param destFilePath 目标文件
-     * @return `true`: 复制成功<br></br>`false`: 复制失败
+     * @return true复制成功  false复制失败
      */
     public boolean copyFile(String srcFilePath, String destFilePath) {
         try {
@@ -2922,6 +2927,143 @@ public class MdmManager {
         } catch (Exception e) {
             e.printStackTrace();
             return false;
+        }
+    }
+
+    /**
+     * 设置开机动画
+     *
+     * @param filePath 开机动画文件路径
+     * @return 配置结果
+     * @since MDM11.0.16
+     */
+    public boolean setBootAnimation(String filePath) {
+        try {
+            return getMdmService().setBootAnimation(filePath);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+
+    }
+
+    /**
+     * 设置霸屏应用
+     *
+     * @param packageName 霸屏应用包名,null清除配置
+     * @since MDM11.0.16
+     */
+    public void setKioskApp(String packageName) {
+        try {
+            getMdmService().setKioskApp(packageName);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    /**
+     * 获取霸屏应用包名
+     *
+     * @return 霸屏应用包名
+     * @since MDM11.0.16
+     */
+    public String getKioskApp() {
+        try {
+            return getMdmService().getKioskApp();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+
+    }
+
+    /**
+     * 设置WIFI打开状态
+     *
+     * @param enable true打开，false关闭
+     * @since MDM11.0.18
+     */
+    public void setWifiMode(boolean enable) {
+        try {
+            getMdmService().setWifiMode(enable);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    /**
+     * 通过包名停止应用进程
+     *
+     * @param packageName 要停止的进程包名
+     * @since MDM12.0.2
+     */
+    public void killApplicationProcess(String packageName) {
+        try {
+            getMdmService().killApplicationProcess(packageName);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+
+    /**
+     * 打开网络共享
+     *
+     * @param iStartTetheringCallback 打开回调
+     * @since MDM12.0.3
+     */
+    public void startTethering(IStartTetheringCallback iStartTetheringCallback) {
+        try {
+            getMdmService().startTethering(iStartTetheringCallback);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 停止指定类型的网络共享
+     *
+     * @since MDM12.0.3
+     */
+    public void stopTethering() {
+        try {
+            getMdmService().stopTethering();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 获取网络共享信息
+     *
+     * @return {@link WifiEntity}
+     * @since MDM12.0.3
+     */
+    public WifiEntity getSoftApConfiguration() {
+        try {
+            return getMdmService().getSoftApConfiguration();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+
+    /**
+     * 连接到wifi
+     *
+     * @param apEntity             wifi配置信息
+     * @param iWifiConnectListener 连接回调
+     * @since MDM12.0.3
+     */
+    public void connect2Wifi(WifiEntity apEntity, IWifiConnectListener iWifiConnectListener) {
+        try {
+            getMdmService().connect2Wifi(apEntity, iWifiConnectListener);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }

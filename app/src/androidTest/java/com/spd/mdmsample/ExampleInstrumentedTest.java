@@ -8,6 +8,8 @@ import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
 import com.google.gson.Gson;
+import com.spd.mdm.core.entity.WifiEntity;
+import com.spd.mdm.core.listener.IStartTetheringCallback;
 import com.spd.mdm.manager.IPackageDeleteObserver;
 import com.spd.mdm.manager.MdmManager;
 import com.spd.mdm.manager.MdmWifiEntity;
@@ -114,5 +116,35 @@ public class ExampleInstrumentedTest {
     @Test
     public void testAirplaneMode() {
         MdmManager.getInstance().setAirplaneMode(!MdmManager.getInstance().getAirplaneMode());
+    }
+
+    @Test
+    public void testWifiAp() {
+        MdmManager.getInstance().startTethering(new IStartTetheringCallback.Stub() {
+            @Override
+            public void onTetheringStarted() {
+                WifiEntity wifiEntity = MdmManager.getInstance().getSoftApConfiguration();
+                System.out.println("onTetheringStarted  " + "ssid "+ wifiEntity.getSsid()+ "   pwd "+wifiEntity.getPreSharedKey() + " ip  "+wifiEntity.getServerIp());
+            }
+
+            @Override
+            public void onTetheringFailed() {
+                System.out.println("onTetheringFailed  ");
+            }
+        });
+
+//        MdmManager.getInstance().stopTethering();
+//        WifiEntity wifiEntity = new WifiEntity("AndroidAP_6663","7a3e710a8c4c");
+//        MdmManager.getInstance().connect2Wifi(wifiEntity, new IWifiConnectListener.Stub() {
+//            @Override
+//            public void onSuccess() {
+//                System.out.println("connect2Wifi  onSuccess");
+//            }
+//
+//            @Override
+//            public void onFailure(int reason) {
+//                System.out.println("connect2Wifi  onFailure");
+//            }
+//        });
     }
 }
