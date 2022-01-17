@@ -23,9 +23,10 @@ import static com.spd.mdmsample.constant.MdmConstant.MDM_APPLIST_METHOD;
 import static com.spd.mdmsample.constant.MdmConstant.UNINSTALL_PACKAGE;
 
 /**
- * @author :Reginer on  2020/4/13 17:09.
+ * @author :Reginer  2020/4/13 17:09.
  * 联系方式:QQ:282921012
- * 功能描述:
+ * 编辑: TER
+ * 功能描述:主页
  */
 public class MainActivity extends AppCompatActivity {
 
@@ -2208,18 +2209,6 @@ public class MainActivity extends AppCompatActivity {
             StringBuilder msg = new StringBuilder();
 
             msg.append("下载文件到文件根目录下");
-
-            AlertUtils.dialog(MainActivity.this, msg.toString());
-        });
-
-        //disconnectMqtt
-        findViewById(R.id.disconnectmqtt).setOnClickListener(v -> {
-
-            MdmManager.getInstance().disconnectMqtt();
-
-            StringBuilder msg = new StringBuilder();
-
-            msg.append("断开mqtt连接");
 
             AlertUtils.dialog(MainActivity.this, msg.toString());
         });
