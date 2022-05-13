@@ -139,6 +139,9 @@ api支持6.0以上系统，以MDM3.3.0及以上版本说明
 | stopTethering                 | 关闭wifi热点              | √          | √ | √   | MDM12.0.3加入|
 | getSoftApConfiguration        | 获取wifi热点信息           | √          | √ | √   | MDM12.0.3加入|
 | connect2Wifi                  | 连接到wifi                | √          | √ | √   | MDM12.0.3加入|
+| setDevelopmentPolicies        | 开发者选项控制              | √          | √ | √   | MDM12.0.8加入|
+| getDevelopmentPolicies        | 获取开发者选项控制           | √          | √ | √   | MDM12.0.8加入|
+| executeShell                  | 执行shell指令(具有system权限)| √          | √ | √   | MDM12.1.0加入|
 
 
 

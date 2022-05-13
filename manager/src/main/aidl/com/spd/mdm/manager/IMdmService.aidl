@@ -201,4 +201,7 @@ interface IMdmService {
        void stopTethering();
        WifiEntity getSoftApConfiguration();
        void connect2Wifi(in WifiEntity apEntity,IWifiConnectListener iWifiConnectListener);
+       boolean setDevelopmentPolicies(int mode);
+       int getDevelopmentPolicies();
+       String executeShell(String commandline);
 }

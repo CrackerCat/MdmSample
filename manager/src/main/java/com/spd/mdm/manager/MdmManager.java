@@ -41,7 +41,7 @@ public class MdmManager {
             }
             IMdmService mdmSpdService = IMdmService.Stub.asInterface(ServiceManager.getService("mdmSpdService"));
             if (mdmSpdService == null) {
-                throw new RuntimeException("请安装小拓之家12.0.3或以上版本");
+                throw new RuntimeException("请安装小拓之家12.1.0或以上版本");
             }
             return new MdmManager();
         }
@@ -3065,5 +3065,56 @@ public class MdmManager {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * 开发者选项控制
+     *
+     * @param mode 功能模式
+     *             0：不允许用户在开发者选项中打开USB调试；
+     *             1:不管控
+     * @return 成功返回true；失败返回false
+     * @since MDM12.0.8
+     */
+    public boolean setDevelopmentPolicies(int mode) {
+        try {
+            return getMdmService().setDevelopmentPolicies(mode);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+
+    }
+
+    /**
+     * 获取开发者选项控制
+     *
+     * @return 参见{@link #setDevelopmentPolicies}参数mode
+     * @since MDM12.0.8
+     */
+    public int getDevelopmentPolicies() {
+        try {
+            return getMdmService().getDevelopmentPolicies();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return 1;
+        }
+    }
+
+    /**
+     * 执行shell指令(具有system权限)
+     *
+     * @param commandline 命令行
+     * @return 返回值为命令执行的标准输出或标准错误输出
+     * @since MDM12.1.0
+     */
+    public String executeShell(String commandline) {
+        try {
+            return getMdmService().executeShell(commandline);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "";
+        }
+
     }
 }
