@@ -142,6 +142,15 @@ api支持6.0以上系统，以MDM3.3.0及以上版本说明
 | setDevelopmentPolicies        | 开发者选项控制              | √          | √ | √   | MDM12.0.8加入|
 | getDevelopmentPolicies        | 获取开发者选项控制           | √          | √ | √   | MDM12.0.8加入|
 | executeShell                  | 执行shell指令(具有system权限)| √          | √ | √   | MDM12.1.0加入|
+| setNfcEnable                  | 开关nfc                    | √       | √     | √            | MDM12.1.0加入                         |
+| clearDefaultLauncher                  | 移除默认桌面                    | √       | √     | √            | MDM12.1.1加入                         |
+| setMmsEnable                  | 设置彩信是否禁用                    | √       | √     | √            | MDM12.1.1加入                         |
+| isMmsEnabled                  | 获取彩信是否禁用                    | √       | √     | √            | MDM12.1.1加入                         |
+| addPersistentApp                  | 添加系统应用保活白名单                    | √       | √     | √            | MDM12.1.1加入                         |
+| removePersistentApp                  | 移除系统应用保活白名单                    | √       | √     | √            | MDM12.1.1加入                         |
+| setFileShareEnable                  | 设置禁止分享文件                    | √       | √     | √            | MDM12.1.1加入                         |
+| isFileShareEnabled                  | 查询是否禁用分享文件                    | √       | √     | √            | MDM12.1.1加入                         |
+| resetDevice                  | 恢复出厂设置                    | √       | √     | √            | MDM12.1.1加入                         |
 
 
 

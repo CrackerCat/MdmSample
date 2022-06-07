@@ -3115,6 +3115,121 @@ public class MdmManager {
             e.printStackTrace();
             return "";
         }
+    }
 
+    /**
+     * 移除默认桌面
+     *
+     * @since MDM12.1.1
+     */
+    public void clearDefaultLauncher() {
+        try {
+            getMdmService().clearDefaultLauncher();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    /**
+     * 设置彩信是否禁用
+     *
+     * @param enable false为禁用
+     * @since MDM12.1.1
+     */
+    public void setMmsEnable(boolean enable) {
+        try {
+            getMdmService().setMmsEnable(enable);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    /**
+     * 获取彩信是否禁用
+     *
+     * @return false为禁用
+     * @since MDM12.1.1
+     */
+    public boolean isMmsEnabled() {
+        try {
+            return getMdmService().isMmsEnabled();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return true;
+        }
+
+    }
+
+    /**
+     * 添加系统应用保活白名单
+     *
+     * @param packageName 应用包名
+     * @since MDM12.1.1
+     */
+    public void addPersistentApp(String packageName) {
+        try {
+            getMdmService().addPersistentApp(packageName);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 移除系统应用保活白名单
+     *
+     * @param packageName 应用包名
+     * @since MDM12.1.1
+     */
+    public void removePersistentApp(String packageName) {
+        try {
+            getMdmService().removePersistentApp(packageName);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    /**
+     * 设置禁止分享文件
+     *
+     * @param enable 是否禁止
+     * @since MDM12.1.1
+     */
+    public void setFileShareEnable(boolean enable) {
+        try {
+            getMdmService().setFileShareEnable(enable);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 查询是否禁用分享文件
+     *
+     * @return false为禁止
+     * @since MDM12.1.1
+     */
+    public boolean isFileShareEnabled() {
+        try {
+            return getMdmService().isFileShareEnabled();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return true;
+        }
+    }
+
+    /**
+     * 恢复出厂设置
+     *
+     * @since MDM12.1.1
+     */
+    public void resetDevice() {
+        try {
+            getMdmService().resetDevice();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

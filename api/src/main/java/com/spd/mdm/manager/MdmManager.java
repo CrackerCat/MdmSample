@@ -3,6 +3,7 @@ package com.spd.mdm.manager;
 import android.Manifest;
 import android.content.ContentValues;
 import android.content.Intent;
+
 import com.spd.mdm.core.entity.WifiEntity;
 import com.spd.mdm.core.listener.IStartTetheringCallback;
 import com.spd.mdm.core.listener.IWifiConnectListener;
@@ -1947,7 +1948,7 @@ public class MdmManager {
      * 授予运行时权限
      *
      * @param packageName    应用包名
-     * @param permissionName 权限名称 
+     * @param permissionName 权限名称
      * @since MDM3.3.11
      */
     public void grantRuntimePermission(String packageName, String permissionName) {
@@ -2132,5 +2133,79 @@ public class MdmManager {
      */
     public String executeShell(String commandline) {
         return "";
+    }
+
+
+    /**
+     * 移除默认桌面
+     *
+     * @since MDM12.1.1
+     */
+    public void clearDefaultLauncher() {
+    }
+
+    /**
+     * 设置彩信是否禁用
+     *
+     * @param enable false为禁用
+     * @since MDM12.1.1
+     */
+    public void setMmsEnable(boolean enable) {
+
+    }
+
+    /**
+     * 获取彩信是否禁用
+     *
+     * @return false为禁用
+     * @since MDM12.1.1
+     */
+    public boolean isMmsEnabled() {
+        return true;
+    }
+
+    /**
+     * 添加系统应用保活白名单
+     *
+     * @param packageName 应用包名
+     * @since MDM12.1.1
+     */
+    public void addPersistentApp(String packageName) {
+    }
+
+    /**
+     * 移除系统应用保活白名单
+     *
+     * @param packageName 应用包名
+     * @since MDM12.1.1
+     */
+    public void removePersistentApp(String packageName) {
+    }
+
+    /**
+     * 设置禁止分享文件
+     *
+     * @param enable 是否禁止
+     * @since MDM12.1.1
+     */
+    public void setFileShareEnable(boolean enable) {
+    }
+
+    /**
+     * 查询是否禁用分享文件
+     *
+     * @return false为禁止
+     * @since MDM12.1.1
+     */
+    public boolean isFileShareEnabled() {
+        return true;
+    }
+
+    /**
+     * 恢复出厂设置
+     *
+     * @since MDM12.1.1
+     */
+    public void resetDevice() {
     }
 }

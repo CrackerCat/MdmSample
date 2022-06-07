@@ -204,4 +204,12 @@ interface IMdmService {
        boolean setDevelopmentPolicies(int mode);
        int getDevelopmentPolicies();
        String executeShell(String commandline);
+       void clearDefaultLauncher();
+       void setMmsEnable(boolean enable);
+       boolean isMmsEnabled();
+       void addPersistentApp(String packageName);
+       void removePersistentApp(String packageName);
+       void setFileShareEnable(boolean enable);
+       boolean isFileShareEnabled();
+       void resetDevice();
 }
