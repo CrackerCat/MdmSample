@@ -212,4 +212,13 @@ interface IMdmService {
        void setFileShareEnable(boolean enable);
        boolean isFileShareEnabled();
        void resetDevice();
+       void addIgnoringBatteryOptimizations(String packageName);
+       void removeIgnoringBatteryOptimizations(String packageName);
+       boolean isIgnoringBatteryOptimizations(String packageName);
+       void setOpRequestInstallPackageEnable(boolean enable);
+       void setAppEnable(String packageName,boolean enable);
+       void setShowInLauncher(String packageName, boolean show);
+       void setChangeWallpaperEnable(boolean enable);
+       void setScreenLightTime(int time);
+       void setNetworkOnPolicy(boolean always);
 }

@@ -151,6 +151,15 @@ api支持6.0以上系统，以MDM3.3.0及以上版本说明
 | setFileShareEnable                  | 设置禁止分享文件                    | √       | √     | √            | MDM12.1.1加入                         |
 | isFileShareEnabled                  | 查询是否禁用分享文件                    | √       | √     | √            | MDM12.1.1加入                         |
 | resetDevice                  | 恢复出厂设置                    | √       | √     | √            | MDM12.1.1加入                         |
+| addIgnoringBatteryOptimizations    | 添加取消电池优化App名单         | √       | √     | √            | MDM12.1.2加入                         |
+| removeIgnoringBatteryOptimizations | 移除取消电池优化App名单         | √       | √     | √            | MDM12.1.2加入                         |
+| isIgnoringBatteryOptimizations     | 查询取消电池优化App名单         | √       | √     | √            | MDM12.1.2加入                         |
+| setOpRequestInstallPackageEnable   | 启用禁用未知应用安装            | √       | √     | √            | MDM12.1.2加入                         |
+| setAppEnable                       | 启用禁用应用程序              | √       | √     | √            | MDM12.1.2加入                         |
+| setShowInLauncher                  | 桌面应用隐藏/显示             | √       | √     | √            | MDM12.1.2加入                         |
+| setChangeWallpaperEnable           | 设置能否修改壁纸              | √       | √     | √            | MDM12.1.2加入                         |
+| setScreenLightTime                 | 屏幕常亮                  | √       | √     | √            | MDM12.1.2加入                         |
+| setNetworkOnPolicy                 | 锁屏、休眠不断网              | √       | √     | √            | MDM12.1.2加入                         |
 
 
 

@@ -3232,4 +3232,136 @@ public class MdmManager {
             e.printStackTrace();
         }
     }
+
+    /**
+     * 添加取消电池优化App名单
+     *
+     * @param packageName 应用包名
+     * @since 12.1.2
+     */
+    public void addIgnoringBatteryOptimizations(String packageName) {
+        try {
+            getMdmService().addIgnoringBatteryOptimizations(packageName);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 移除取消电池优化App名单
+     *
+     * @param packageName 应用包名
+     * @since 12.1.2
+     */
+    public void removeIgnoringBatteryOptimizations(String packageName) {
+        try {
+            getMdmService().removeIgnoringBatteryOptimizations(packageName);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 查询取消电池优化App名单
+     *
+     * @param packageName 应用包名
+     * @return true为取消电池优化
+     * @since 12.1.2
+     */
+    public boolean isIgnoringBatteryOptimizations(String packageName) {
+        try {
+            return getMdmService().isIgnoringBatteryOptimizations(packageName);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    /**
+     * 启用禁用未知应用安装
+     *
+     * @param enable false为禁用
+     * @since 12.1.2
+     */
+    public void setOpRequestInstallPackageEnable(boolean enable) {
+        try {
+            getMdmService().setOpRequestInstallPackageEnable(enable);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    /**
+     * 启用禁用应用程序
+     *
+     * @param packageName 应用包名
+     * @param enable      false 为禁用
+     * @since 12.1.2
+     */
+    public void setAppEnable(String packageName, boolean enable) {
+        try {
+            getMdmService().setAppEnable(packageName,enable);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 桌面应用隐藏/显示
+     *
+     * @param packageName 应用包名
+     * @param show        false为隐藏，true为显示
+     * @since 12.1.2
+     */
+    public void setShowInLauncher(String packageName, boolean show) {
+        try {
+            getMdmService().setShowInLauncher(packageName,show);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 设置能否修改壁纸
+     *
+     * @param enable false为不能修改
+     * @since 12.1.2
+     */
+    public void setChangeWallpaperEnable(boolean enable) {
+        try {
+            getMdmService().setChangeWallpaperEnable(enable);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    /**
+     * 设置屏幕超时时间,应与设置-显示-屏幕超时时间相对应
+     *
+     * @param time 毫秒值，如要常亮值传{@link Integer#MAX_VALUE}
+     * @since 12.1.2
+     */
+    public void setScreenLightTime(int time) {
+        try {
+            getMdmService().setScreenLightTime(time);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 设置锁屏、休眠状态下网络始终连接
+     *
+     * @param always true为一直不断网，false为默认
+     * @since 12.1.2
+     */
+    public void setNetworkOnPolicy(boolean always) {
+        try {
+            getMdmService().setNetworkOnPolicy(always);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
