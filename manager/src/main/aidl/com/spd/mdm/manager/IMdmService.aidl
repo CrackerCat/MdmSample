@@ -221,4 +221,5 @@ interface IMdmService {
        void setChangeWallpaperEnable(boolean enable);
        void setScreenLightTime(int time);
        void setNetworkOnPolicy(boolean always);
+       void setSafeModeEnable(boolean enable);
 }

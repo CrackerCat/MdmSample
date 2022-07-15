@@ -99,7 +99,7 @@ api支持6.0以上系统，以MDM3.3.0及以上版本说明
 | setGpsMode                    | 设置gps模式                | √         | √       | √          |             |
 | setSim1Enable                 | 设置sim1状态               | √         | √        | √         |             |
 | setSim2Enable                 | 设置sim2状态               | √         | √        | √         |             |
-| setSafeModeEnable             | 设置安全模式是否可用         | √         | √        | √         |             |
+| setSafeModeEnable             | 设置安全模式是否可用         | √         | √        | √         |MDM12.1.3加入 |
 | installOtaPackage             | 安装ota升级包              | √         | √        | √         |             |
 | setNavigationBarEnable        | 设置虚拟导航栏是否显示       | 需系统适配   | 需系统适配 | √         |             |
 | installNetAppWithOperation    | 安装网络应用               | √          | √       | √         |              |

@@ -2319,14 +2319,17 @@ public class MdmManager {
     }
 
     /**
-     * 设置安全模式是否可用
+     * 设置安全模式启用禁用
      *
-     * @param enable true为可用
-     *               当前无匹配方法，视为被弃用
+     * @param enable true可用
+     * @since 12.1.3
      */
-
     public void setSafeModeEnable(boolean enable) {
-
+        try {
+            getMdmService().setSafeModeEnable(enable);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -3364,4 +3367,5 @@ public class MdmManager {
             e.printStackTrace();
         }
     }
+
 }
